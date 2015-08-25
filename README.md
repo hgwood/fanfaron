@@ -11,3 +11,15 @@ of a property that does not appear in the Pet Store example will fail to deseria
 ## Features
 
 - Structural equality
+
+## Changelog
+
+The versioning follows semantic versioning.
+
+### 1.1.0
+
+- feat: structural equality
+
+### 1.0.0
+
+- feat: can deserialize pet store
