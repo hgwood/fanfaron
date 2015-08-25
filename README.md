@@ -16,10 +16,18 @@ of a property that does not appear in the Pet Store example will fail to deseria
 
 The versioning follows semantic versioning.
 
+### 3.0.0
+
+- *breaking* feat: can deserialize the Swagger 2 JSON schema
+  - `AdditionProperties` class was removed
+  - `Schema.additionalProperties` is now of type `BooleanOrSchema` instead of `AdditionalProperties`
+  - `Items` class was removed
+  - `Schema.items` is now of type `Schema` instead of `Items`
+
 ### 2.0.0
 
 - *breaking* feat: support for allowed and forbidden additional properties in a schema
-`Schema.additionalProperties` is now of type `AdditionalProperties` instead of `Schema`.
+  - `Schema.additionalProperties` is now of type `AdditionalProperties` instead of `Schema`.
 
 ### 1.1.0
 

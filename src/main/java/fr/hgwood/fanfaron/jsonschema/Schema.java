@@ -2,20 +2,39 @@ package fr.hgwood.fanfaron.jsonschema;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
 
 public class Schema {
+    // JSON Schema only properties
+    public String id;
+    public String $schema;
+    public PatternProperties patternProperties;
+    public Definitions definitions;
+    public Schema not;
+    public List<Schema> oneOf;
+    public BooleanOrSchema additionalItems;
+    public List<Schema> anyOf;
+
+    // JSON Schema properties supported in Swagger 2
     public String $ref;
     public String format;
+    public String title;
     public String description;
     @JsonProperty("default") public Object _default;
+    public String pattern;
+    public BigInteger minItems;
+    public Boolean uniqueItems;
+    public BigInteger minProperties;
     public Properties properties;
     public List<String> required;
     @JsonProperty("enum") public List<Object> _enum;
     public String type;
-    public Items items;
-    public AdditionalProperties additionalProperties;
+    public Schema items;
+    public BooleanOrSchema additionalProperties;
+
+    // Swagger 2 extensions
     public Xml xml;
     public Object example;
 
