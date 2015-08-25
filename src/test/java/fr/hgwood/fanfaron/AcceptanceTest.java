@@ -1,7 +1,11 @@
+package fr.hgwood.fanfaron;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.hgwood.fanfaron.Swagger;
 import org.junit.Test;
 
+import java.net.URL;
+
+import static java.util.Objects.requireNonNull;
 import static org.junit.Assert.assertEquals;
 
 public class AcceptanceTest {
@@ -15,7 +19,9 @@ public class AcceptanceTest {
     }
 
     private Swagger deserialize(String resourcePath) throws Exception {
-        return new ObjectMapper().readValue(getClass().getResource(resourcePath), Swagger.class);
+        URL resourceUrl = getClass().getResource(resourcePath);
+        requireNonNull(resourceUrl, "resource not found: " + resourcePath);
+        return new ObjectMapper().readValue(resourceUrl, Swagger.class);
     }
 
 }
