@@ -15,7 +15,9 @@ public class AcceptanceTest {
     }
 
     @Test public void two_models_deserialized_from_the_same_source_are_equal() throws Exception {
-        assertEquals(deserialize("petstore.swagger.json"), deserialize("petstore.swagger.json"));
+        assertEquals("structural equality contract not fulfilled",
+            deserialize("petstore.swagger.json"),
+            deserialize("petstore.swagger.json"));
     }
 
     private Swagger deserialize(String resourcePath) throws Exception {
