@@ -16,6 +16,11 @@ of a property that does not appear in the Pet Store example will fail to deseria
 
 The versioning follows semantic versioning.
 
+### 2.0.0
+
+- *breaking* feat: support for allowed and forbidden additional properties in a schema
+`Schema.additionalProperties` is now of type `AdditionalProperties` instead of `Schema`.
+
 ### 1.1.0
 
 - feat: structural equality

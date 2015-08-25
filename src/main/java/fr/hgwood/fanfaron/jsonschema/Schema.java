@@ -15,7 +15,7 @@ public class Schema {
     @JsonProperty("enum") public List<Object> _enum;
     public String type;
     public Items items;
-    public Schema additionalProperties;
+    public AdditionalProperties additionalProperties;
     public Xml xml;
     public Object example;
 
