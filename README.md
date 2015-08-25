@@ -19,7 +19,7 @@ The versioning follows semantic versioning.
 ### 3.0.0
 
 - *breaking* feat: can deserialize the Swagger 2 JSON schema
-  - `AdditionProperties` class was removed
+  - `AdditionalProperties` class was removed
   - `Schema.additionalProperties` is now of type `BooleanOrSchema` instead of `AdditionalProperties`
   - `Items` class was removed
   - `Schema.items` is now of type `Schema` instead of `Items`
