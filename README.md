@@ -16,6 +16,10 @@ of a property that does not appear in the Pet Store example will fail to deseria
 
 The versioning follows semantic versioning.
 
+### 3.0.1
+
+- fix: structural equality broken for Schema
+
 ### 3.0.0
 
 - *breaking* feat: can deserialize the Swagger 2 JSON schema

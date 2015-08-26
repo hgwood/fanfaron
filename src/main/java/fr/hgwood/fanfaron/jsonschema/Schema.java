@@ -43,10 +43,23 @@ public class Schema {
         if (obj == this) return true;
         if (!(obj instanceof Schema)) return false;
         Schema other = (Schema)obj;
-        return Objects.equals($ref, other.$ref)
+        return Objects.equals(id, other.id)
+            && Objects.equals($schema, other.$schema)
+            && Objects.equals(patternProperties, other.patternProperties)
+            && Objects.equals(definitions, other.definitions)
+            && Objects.equals(not, other.not)
+            && Objects.equals(oneOf, other.oneOf)
+            && Objects.equals(additionalItems, other.additionalItems)
+            && Objects.equals(anyOf, other.anyOf)
+            && Objects.equals($ref, other.$ref)
             && Objects.equals(format, other.format)
+            && Objects.equals(title, other.title)
             && Objects.equals(description, other.description)
             && Objects.equals(_default, other._default)
+            && Objects.equals(pattern, other.pattern)
+            && Objects.equals(minItems, other.minItems)
+            && Objects.equals(uniqueItems, other.uniqueItems)
+            && Objects.equals(minProperties, other.minProperties)
             && Objects.equals(properties, other.properties)
             && Objects.equals(required, other.required)
             && Objects.equals(_enum, other._enum)
@@ -58,6 +71,31 @@ public class Schema {
     }
 
     @Override public int hashCode() {
-        return Objects.hash($ref, format, description, _default, properties, required, _enum, type, items, additionalProperties, xml, example);
+        return Objects.hash(
+            id,
+            $schema,
+            patternProperties,
+            definitions,
+            not,
+            oneOf,
+            additionalItems,
+            anyOf,
+            $ref,
+            format,
+            title,
+            description,
+            _default,
+            pattern,
+            minItems,
+            uniqueItems,
+            minProperties,
+            properties,
+            required,
+            _enum,
+            type,
+            items,
+            additionalProperties,
+            xml,
+            example);
     }
 }

@@ -11,8 +11,4 @@ public class SchemaTest {
         objectMapper.readValue("{\"additionalProperties\": true}", Schema.class);
     }
 
-    @Test public void deserializes_swagger_2_schema_successfully() throws Exception {
-        deserialize(getClass(), "swagger2.schema.json", Schema.class);
-    }
-
 }

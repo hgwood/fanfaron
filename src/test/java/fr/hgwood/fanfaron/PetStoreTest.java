@@ -5,7 +5,7 @@ import org.junit.Test;
 import static fr.hgwood.fanfaron.TestUtils.deserialize;
 import static org.junit.Assert.assertEquals;
 
-public class AcceptanceTest {
+public class PetStoreTest {
 
     @Test public void deserializes_pet_store_successfully() throws Exception {
         deserializePetStore();

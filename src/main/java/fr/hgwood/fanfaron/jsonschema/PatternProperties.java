@@ -4,7 +4,6 @@ import com.google.common.collect.ForwardingMap;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 public class PatternProperties extends ForwardingMap<String, Schema> {
 

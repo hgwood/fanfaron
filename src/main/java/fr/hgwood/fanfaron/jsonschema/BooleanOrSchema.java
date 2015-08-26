@@ -9,6 +9,10 @@ public class BooleanOrSchema {
     public Boolean allowed;
     public Schema schema;
 
+    public BooleanOrSchema() {
+
+    }
+
     @JsonCreator public BooleanOrSchema(boolean allowed) {
         this.allowed = allowed;
     }
