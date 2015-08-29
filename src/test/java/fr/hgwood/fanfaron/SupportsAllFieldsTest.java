@@ -22,4 +22,8 @@ public class SupportsAllFieldsTest {
         deserialize(getClass(), "license.json", License.class);
     }
 
+    @Test public void pathItem() {
+        deserialize(getClass(), "pathItem.json", PathItem.class);
+    }
+
 }

@@ -1,0 +1,11 @@
+{
+  "$ref": null,
+  "get": null,
+  "put": null,
+  "post": null,
+  "delete": null,
+  "options": null,
+  "head": null,
+  "patch": null,
+  "parameters": null
+}
