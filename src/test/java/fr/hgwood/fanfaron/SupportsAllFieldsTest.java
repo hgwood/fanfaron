@@ -46,4 +46,8 @@ public class SupportsAllFieldsTest {
         deserialize(getClass(), "response.json", Response.class);
     }
 
+    @Test public void header() {
+        deserialize(getClass(), "header.json", Header.class);
+    }
+
 }
