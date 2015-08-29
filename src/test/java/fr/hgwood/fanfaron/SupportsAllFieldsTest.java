@@ -34,4 +34,8 @@ public class SupportsAllFieldsTest {
         deserialize(getClass(), "externalDocumentation.json", ExternalDocumentation.class);
     }
 
+    @Test public void parameter() {
+        deserialize(getClass(), "parameter.json", Parameter.class);
+    }
+
 }

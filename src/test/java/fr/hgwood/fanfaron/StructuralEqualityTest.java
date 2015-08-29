@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.*;
 
@@ -34,7 +36,11 @@ public class StructuralEqualityTest {
     }
 
     private Class<?> typeOfValues(Class<?> type) {
-        return (Class<?>)((ParameterizedType)type.getGenericSuperclass()).getActualTypeArguments()[1];
+        Type typeOfValues = ((ParameterizedType)type.getGenericSuperclass()).getActualTypeArguments()[1];
+        if (typeOfValues instanceof ParameterizedType) {
+            typeOfValues = ((ParameterizedType)typeOfValues).getActualTypeArguments()[0];
+        }
+        return (Class<?>)typeOfValues;
     }
 
     private <T> Collection<Class<?>> nestedTypes(Class<T> type) throws Exception {
@@ -44,7 +50,11 @@ public class StructuralEqualityTest {
         Collection<Class<?>> nestedTypes = new ArrayList<>();
         for (Field field : type.getFields()) {
             assertIsInEqual(type, field);
-            nestedTypes.add(field.getType());
+            if (List.class.isAssignableFrom(field.getType())) {
+                nestedTypes.add((Class<?>)((ParameterizedType)field.getGenericType()).getActualTypeArguments()[0]);
+            } else {
+                nestedTypes.add(field.getType());
+            }
         }
         return nestedTypes;
     }
@@ -56,6 +66,7 @@ public class StructuralEqualityTest {
         else if (field.getType() == boolean.class) field.set(mutated, true);
         else if (field.getType() == Boolean.class) field.set(mutated, true);
         else if (field.getType() == BigInteger.class) field.set(mutated, BigInteger.ONE);
+        else if (field.getType() == BigDecimal.class) field.set(mutated, BigDecimal.ONE);
         else {
             try {
                 field.set(mutated, field.getType().newInstance());
