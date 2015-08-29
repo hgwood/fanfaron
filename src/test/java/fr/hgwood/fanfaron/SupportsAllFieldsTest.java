@@ -50,4 +50,8 @@ public class SupportsAllFieldsTest {
         deserialize(getClass(), "header.json", Header.class);
     }
 
+    @Test public void securityScheme() {
+        deserialize(getClass(), "securityScheme.json", SecurityScheme.class);
+    }
+
 }
