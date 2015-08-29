@@ -18,4 +18,8 @@ public class SupportsAllFieldsTest {
         deserialize(getClass(), "contact.json", Contact.class);
     }
 
+    @Test public void license() {
+        deserialize(getClass(), "license.json", License.class);
+    }
+
 }
