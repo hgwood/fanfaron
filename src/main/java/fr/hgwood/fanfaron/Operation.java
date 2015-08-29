@@ -7,11 +7,14 @@ public class Operation {
     public List<String> tags;
     public String summary;
     public String description;
+    public ExternalDocumentation externalDocs;
     public String operationId;
     public List<String> consumes;
     public List<String> produces;
     public List<Parameter> parameters;
     public Responses responses;
+    public List<String> schemes;
+    public Boolean deprecated = false;
     public List<SecurityRequirement> security;
 
     @Override public boolean equals(Object obj) {
@@ -22,16 +25,29 @@ public class Operation {
         return Objects.equals(tags, other.tags)
             && Objects.equals(summary, other.summary)
             && Objects.equals(description, other.description)
+            && Objects.equals(externalDocs, other.externalDocs)
             && Objects.equals(operationId, other.operationId)
             && Objects.equals(consumes, other.consumes)
             && Objects.equals(produces, other.produces)
             && Objects.equals(parameters, other.parameters)
             && Objects.equals(responses, other.responses)
-            && Objects.equals(tags, other.tags)
+            && Objects.equals(schemes, other.schemes)
+            && Objects.equals(deprecated, other.deprecated)
             && Objects.equals(security, other.security);
     }
 
     @Override public int hashCode() {
-        return Objects.hash(tags, summary, description, operationId, consumes, parameters, responses, security);
+        return Objects.hash(
+            tags,
+            summary,
+            description,
+            externalDocs,
+            operationId,
+            consumes,
+            parameters,
+            responses,
+            schemes,
+            deprecated,
+            security);
     }
 }

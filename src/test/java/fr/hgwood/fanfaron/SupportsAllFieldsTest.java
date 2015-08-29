@@ -26,4 +26,8 @@ public class SupportsAllFieldsTest {
         deserialize(getClass(), "pathItem.json", PathItem.class);
     }
 
+    @Test public void operation() {
+        deserialize(getClass(), "operation.json", Operation.class);
+    }
+
 }
