@@ -1,0 +1,19 @@
+{
+  "type": null,
+  "format": null,
+  "items": null,
+  "collectionFormat": null,
+  "default": null,
+  "maximum": null,
+  "exclusiveMaximum": null,
+  "minimum": null,
+  "exclusiveMinimum": null,
+  "maxLength": null,
+  "minLength": null,
+  "pattern": null,
+  "maxItems": null,
+  "minItems": null,
+  "uniqueItems": null,
+  "enum": null,
+  "multipleOf": null
+}

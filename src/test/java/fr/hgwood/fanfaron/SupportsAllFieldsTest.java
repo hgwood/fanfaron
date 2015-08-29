@@ -38,4 +38,8 @@ public class SupportsAllFieldsTest {
         deserialize(getClass(), "parameter.json", Parameter.class);
     }
 
+    @Test public void items() {
+        deserialize(getClass(), "items.json", Items.class);
+    }
+
 }
