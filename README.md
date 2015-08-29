@@ -18,7 +18,7 @@ The versioning follows semantic versioning.
 
 ### 3.0.1
 
-- fix: structural equality broken for Schema
+- fix: structural equality broken for `Schema`
 
 ### 3.0.0
 
