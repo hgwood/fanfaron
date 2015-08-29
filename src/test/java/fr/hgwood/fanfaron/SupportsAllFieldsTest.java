@@ -10,4 +10,8 @@ public class SupportsAllFieldsTest {
         deserialize(getClass(), "swagger.json", Swagger.class);
     }
 
+    @Test public void info() {
+        deserialize(getClass(), "info.json", Info.class);
+    }
+
 }
