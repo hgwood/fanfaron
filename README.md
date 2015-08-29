@@ -11,7 +11,7 @@ The `Schema` class is meant to be able to deserialize both the [Schema Object](h
 from the Swagger 2.0 specification and JSON schemas from the [JSON Schema Draft 4 specification](http://json-schema.org/).
 The [JSON schema for Swagger 2.0](https://github.com/swagger-api/swagger-spec/blob/master/schemas/v2.0/schema.json) (at
 commit [aefeb4d](https://github.com/swagger-api/swagger-spec/commit/aefeb4d140035f98a64d5c1b5fba5fd152096952)) can be
-deserialized. Support is defined but the union of the subsets defined by the Pet Store example and the Swagger 2.0 JSON
+deserialized. Support is defined by the union of the subsets defined by the Pet Store example and the Swagger 2.0 JSON
 schema.
 
 ## Features
