@@ -30,4 +30,8 @@ public class SupportsAllFieldsTest {
         deserialize(getClass(), "operation.json", Operation.class);
     }
 
+    @Test public void externalDocs() {
+        deserialize(getClass(), "externalDocumentation.json", ExternalDocumentation.class);
+    }
+
 }
