@@ -3,6 +3,8 @@ package fr.hgwood.fanfaron;
 import java.util.Objects;
 
 public class Contact {
+    public String name;
+    public String url;
     public String email;
 
     @Override public boolean equals(Object obj) {
@@ -10,10 +12,12 @@ public class Contact {
         if (obj == this) return true;
         if (!(obj instanceof Contact)) return false;
         Contact other = (Contact)obj;
-        return Objects.equals(email, other.email);
+        return Objects.equals(name, other.name)
+            && Objects.equals(url, other.url)
+            && Objects.equals(email, other.email);
     }
 
     @Override public int hashCode() {
-        return Objects.hash(email);
+        return Objects.hash(name, url, email);
     }
 }
