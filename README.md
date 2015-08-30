@@ -27,17 +27,17 @@ Non-exhausitve list of limitations:
 The objects defined by the spec are modeled in the simplest way possible: Java classes with public fields and a correct
 `equals` implementation. The types of the fields match the types defined in the spec with the following mapping:
 
-|Type in spec|Type in Fanfaron|
-|-|-|
-|string|String|
-|integer|BigInteger|
-|number|BigDecimal|
-|boolean|Boolean|
-|*|Object|
-|T|T|
-|[T]|List\<T\>|
-|T \| Reference Object|T has a `$ref` field|
-|boolean \| Schema|BooleanOrSchema|
+Type in spec | Type in Fanfaron
+------------ | ----------------
+string | String
+integer | BigInteger
+number | BigDecimal
+boolean | Boolean
+* | Object
+T | T
+[T] | List\<T\>
+T \| Reference Object | T has a `$ref` field
+boolean \| Schema | BooleanOrSchema
 
 Furthermore, objects with dynamically-named fields of type `T` are mapped using classes that implement `Map<String, T>`.
 
