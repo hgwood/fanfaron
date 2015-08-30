@@ -60,7 +60,7 @@ The versioning follows semantic versioning.
   the Swagger 2.0 specification, only implicitly.
   - Fields `xml` and `example`, which are specific to Swagger 2.0, were removed from `fr.hgwood.fanfaron.jsonschema.Schema`
   - Classes in `fr.hgwood.fanfaron.jsonschema` can still be used to deserialize the JSON schema subset defined by the
-  Swagger 2.0 JSON schema, although that is no longer documented. Thoses classes might be moved to another library.
+  Swagger 2.0 JSON schema, although that is no longer documented. Those classes might be moved to another library.
 - feat: all fields for `Xml`
 
 ### 3.1.0
