@@ -1,7 +1,6 @@
 package fr.hgwood.fanfaron;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import fr.hgwood.fanfaron.jsonschema.Schema;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

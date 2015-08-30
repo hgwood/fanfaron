@@ -1,7 +1,5 @@
 package fr.hgwood.fanfaron;
 
-import fr.hgwood.fanfaron.jsonschema.Schema;
-
 import java.util.Objects;
 
 public class Response {

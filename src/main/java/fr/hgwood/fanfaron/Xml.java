@@ -1,10 +1,10 @@
-package fr.hgwood.fanfaron.jsonschema;
+package fr.hgwood.fanfaron;
 
 import java.util.Objects;
 
 public class Xml {
     public String name;
-    public boolean wrapped = false;
+    public Boolean wrapped = false;
 
     @Override public boolean equals(Object obj) {
         if (obj == null) return false;

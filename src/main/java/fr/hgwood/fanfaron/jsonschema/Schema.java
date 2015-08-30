@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Schema {
-    // JSON Schema only properties
     public String id;
     public String $schema;
     public PatternProperties patternProperties;
@@ -17,7 +16,6 @@ public class Schema {
     public BooleanOrSchema additionalItems;
     public List<Schema> anyOf;
 
-    // JSON Schema properties supported in Swagger 2
     public String $ref;
     public String format;
     public String title;
@@ -33,10 +31,6 @@ public class Schema {
     public String type;
     public Schema items;
     public BooleanOrSchema additionalProperties;
-
-    // Swagger 2 extensions
-    public Xml xml;
-    public Object example;
 
     @Override public boolean equals(Object obj) {
         if (obj == null) return false;
@@ -65,9 +59,7 @@ public class Schema {
             && Objects.equals(_enum, other._enum)
             && Objects.equals(type, other.type)
             && Objects.equals(items, other.items)
-            && Objects.equals(additionalProperties, other.additionalProperties)
-            && Objects.equals(xml, other.xml)
-            && Objects.equals(example, other.example);
+            && Objects.equals(additionalProperties, other.additionalProperties);
     }
 
     @Override public int hashCode() {
@@ -94,8 +86,6 @@ public class Schema {
             _enum,
             type,
             items,
-            additionalProperties,
-            xml,
-            example);
+            additionalProperties);
     }
 }
