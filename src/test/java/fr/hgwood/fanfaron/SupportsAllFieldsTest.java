@@ -62,4 +62,8 @@ public class SupportsAllFieldsTest {
         deserialize(getClass(), "schema.json", Schema.class);
     }
 
+    @Test public void xml() {
+        deserialize(getClass(), "xml.json", Xml.class);
+    }
+
 }
