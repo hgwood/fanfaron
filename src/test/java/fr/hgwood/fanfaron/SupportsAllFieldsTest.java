@@ -58,4 +58,8 @@ public class SupportsAllFieldsTest {
         deserialize(getClass(), "tag.json", Tag.class);
     }
 
+    @Test public void schema() {
+        deserialize(getClass(), "schema.json", Schema.class);
+    }
+
 }
