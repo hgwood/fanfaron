@@ -12,7 +12,7 @@ public class Parameter {
     public String name;
     public String in;
     public String description;
-    public boolean required = false;
+    public Boolean required;
     public Schema schema;
     public String type;
     public String format;
@@ -21,9 +21,9 @@ public class Parameter {
     public String collectionFormat;
     @JsonProperty("default") public Object _default;
     public BigDecimal maximum;
-    public Boolean exclusiveMaximum = false;
+    public Boolean exclusiveMaximum;
     public BigDecimal minimum;
-    public Boolean exclusiveMinimum = false;
+    public Boolean exclusiveMinimum;
     public BigInteger maxLength;
     public BigInteger minLength;
     public String pattern;

@@ -7,7 +7,7 @@ public class Xml {
     public String namespace;
     public String prefix;
     public Boolean attribute;
-    public Boolean wrapped = false;
+    public Boolean wrapped;
 
     @Override public boolean equals(Object obj) {
         if (obj == null) return false;

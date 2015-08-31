@@ -14,7 +14,7 @@ public class Operation {
     public List<Parameter> parameters;
     public Responses responses;
     public List<String> schemes;
-    public Boolean deprecated = false;
+    public Boolean deprecated;
     public List<SecurityRequirement> security;
 
     @Override public boolean equals(Object obj) {

@@ -56,6 +56,16 @@ or any kind of validation. Those belong in adapters and validators, which may be
 
 The versioning follows semantic versioning.
 
+### 5.0.0
+
+- *breaking* feat: removed all default values
+  - `exclusiveMaximum` and `exclusiveMinimum` in `Header` no longuer default to `false`.
+  - `exclusiveMaximum` and `exclusiveMinimum` in `Items` no longuer default to `false`.
+  - `deprecated` in `Operation` no longuer defaults to `false.`
+  - `required` in `Parameter` is now of type `Boolean` instead of `boolean`.
+  - `exclusiveMaximum` and `exclusiveMinimum` in `Parameter` no longuer default to `false`.
+  - `wrapped` in `Xml` no longuer defaults to `false`.
+
 ### 4.0.0
 
 - *breaking* refactor: Schema for Swagger 2 made distinct from Schema for JSON Schema Draft 4
