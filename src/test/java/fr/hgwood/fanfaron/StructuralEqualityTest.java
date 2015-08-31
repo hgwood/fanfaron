@@ -36,7 +36,7 @@ public class StructuralEqualityTest {
     }
 
     private Class<?> typeOfValues(Class<?> type) {
-        Type typeOfValues = ((ParameterizedType)type.getGenericSuperclass()).getActualTypeArguments()[1];
+        Type typeOfValues = ((ParameterizedType)type.getGenericSuperclass()).getActualTypeArguments()[0];
         if (typeOfValues instanceof ParameterizedType) {
             typeOfValues = ((ParameterizedType)typeOfValues).getActualTypeArguments()[0];
         }

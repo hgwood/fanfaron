@@ -1,17 +1,18 @@
 package fr.hgwood.fanfaron;
 
-import com.google.common.collect.ForwardingMap;
+import fr.hgwood.fanfaron.utils.DynamicObject;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#scopesObject
  */
-public class Scopes extends ForwardingMap<String, String> {
-    private final Map<String, String> scopes = new HashMap<>();
+public class Scopes extends DynamicObject<String> {
+    public Scopes(Map<String, String> scopes) {
+        super(scopes);
+    }
 
-    @Override protected Map<String, String> delegate() {
-        return scopes;
+    public Scopes() {
+        super();
     }
 }

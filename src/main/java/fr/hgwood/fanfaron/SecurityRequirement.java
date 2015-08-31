@@ -1,18 +1,19 @@
 package fr.hgwood.fanfaron;
 
-import com.google.common.collect.ForwardingMap;
+import fr.hgwood.fanfaron.utils.DynamicObject;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#securityRequirementObject
  */
-public class SecurityRequirement extends ForwardingMap<String, List<String>> {
-    private final Map<String, List<String>> securityRequirements = new HashMap<>();
+public class SecurityRequirement extends DynamicObject<List<String>> {
+    public SecurityRequirement(Map<String, List<String>> securityRequirements) {
+        super(securityRequirements);
+    }
 
-    @Override protected Map<String, List<String>> delegate() {
-        return securityRequirements;
+    public SecurityRequirement() {
+        super();
     }
 }

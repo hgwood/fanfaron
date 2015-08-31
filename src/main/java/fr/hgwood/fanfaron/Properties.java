@@ -1,17 +1,18 @@
 package fr.hgwood.fanfaron;
 
-import com.google.common.collect.ForwardingMap;
+import fr.hgwood.fanfaron.utils.DynamicObject;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * http://json-schema.org/latest/json-schema-validation.html#anchor64
  */
-public class Properties extends ForwardingMap<String, Schema> {
-    private final Map<String, Schema> properties = new HashMap<>();
+public class Properties extends DynamicObject<Schema> {
+    public Properties(Map<String, Schema> properties) {
+        super(properties);
+    }
 
-    @Override protected Map<String, Schema> delegate() {
-        return properties;
+    public Properties() {
+        super();
     }
 }
