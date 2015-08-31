@@ -7,8 +7,8 @@ import java.util.Map;
 /**
  * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#responsesObject
  */
-public class Responses extends DynamicObject<Response> {
-    public Responses(Map<String, Response> responses) {
+public class Responses extends DynamicObject<ResponseOrReference> {
+    public Responses(Map<String, ResponseOrReference> responses) {
         super(responses);
     }
 

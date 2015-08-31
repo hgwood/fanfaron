@@ -66,4 +66,14 @@ public class SupportsAllFieldsTest {
         deserialize(getClass(), "xml.json", Xml.class);
     }
 
+    @Test public void parameterOrReference() {
+        deserialize(getClass(), "parameter.json", ParameterOrReference.class);
+        deserialize(getClass(), "reference.json", ParameterOrReference.class);
+    }
+
+    @Test public void responseOrReference() {
+        deserialize(getClass(), "response.json", ResponseOrReference.class);
+        deserialize(getClass(), "reference.json", ResponseOrReference.class);
+    }
+
 }

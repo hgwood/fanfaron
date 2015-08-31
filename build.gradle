@@ -1,5 +1,5 @@
 group 'fr.hgwood.fanfaron'
-version '5.0.1'
+version '6.0.0'
 
 apply plugin: 'java'
 

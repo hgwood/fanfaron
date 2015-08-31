@@ -14,7 +14,7 @@ public class Operation {
     public String operationId;
     public List<String> consumes;
     public List<String> produces;
-    public List<Parameter> parameters;
+    public List<ParameterOrReference> parameters;
     public Responses responses;
     public List<String> schemes;
     public Boolean deprecated;

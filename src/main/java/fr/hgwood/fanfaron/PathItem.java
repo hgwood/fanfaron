@@ -15,7 +15,7 @@ public class PathItem {
     public Operation options;
     public Operation head;
     public Operation patch;
-    public List<Parameter> parameters;
+    public List<ParameterOrReference> parameters;
 
     @Override public boolean equals(Object obj) {
         if (obj == null) return false;

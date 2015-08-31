@@ -38,7 +38,7 @@ boolean | Boolean
 * | Object
 T | T
 [T] | List\<T\>
-T \| Reference Object | T has a `$ref` field
+T \| Reference Object | TOrReference
 
 Furthermore, objects with dynamically-named fields of type `T` are mapped using classes that implement `Map<String, T>`.
 
@@ -56,6 +56,16 @@ or any kind of validation. Those belong in adapters and validators, which may be
 
 The versioning follows semantic versioning.
 
+### 6.0.0
+
+- *breaking* refactor: type mapping changed for `T | Reference Object`
+Previously, all types that could be unioned with a Reference Object had a `$ref` field. However those types are also
+used standalone in the specification. To bring the type mapping closer to the specification, these types no longuer have
+a `$ref` field. Impacted types are `Parameter` and `Response`. To deal with the union case, companion types were added
+and named using the pattern `TOrReference`: `ParameterOrReference` and `ResponseOrReference`. These two types extends
+their respective standalone type, and add a `$ref` field. It now as easy to distinguish places where references are
+accepted and those where they are not as it is in the specification.
+
 ### 5.0.1
 
 - fix: missing `$ref` in `Response`
@@ -72,7 +82,7 @@ The versioning follows semantic versioning.
 
 ### 4.0.0
 
-- *breaking* refactor: Schema for Swagger 2 made distinct from Schema for JSON Schema Draft 4
+- *breaking* refactor: `Schema` for Swagger 2 made distinct from `Schema` for JSON Schema Draft 4
   - All classes defined from objects found in the Swagger 2.0 specification are now found in the package
   `fr.hgwood.fanfaron`. Classes in `fr.hgwood.fanfaron.jsonschema` are not used to deserialize Swagger definitions.
   - The new `fr.hgwood.fanfaron.Schema` exactly matches the Schema Object defined by the Swagger 2.0 specification.

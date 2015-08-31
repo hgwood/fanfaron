@@ -11,7 +11,6 @@ import java.util.Objects;
  * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#parameterObject
  */
 public class Parameter {
-    public String $ref;
     public String name;
     public String in;
     public String description;
@@ -41,8 +40,7 @@ public class Parameter {
         if (obj == this) return true;
         if (!(obj instanceof Parameter)) return false;
         Parameter other = (Parameter)obj;
-        return Objects.equals($ref, other.$ref)
-            && Objects.equals(name, other.name)
+        return Objects.equals(name, other.name)
             && Objects.equals(in, other.in)
             && Objects.equals(description, other.description)
             && Objects.equals(required, other.required)
@@ -69,7 +67,6 @@ public class Parameter {
 
     @Override public int hashCode() {
         return Objects.hash(
-            $ref,
             name,
             in,
             description,
