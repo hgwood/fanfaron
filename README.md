@@ -2,6 +2,13 @@
 
 A no-surprise Java model of the [Swagger 2.0 specification](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md).
 
+## What's wrong with [Swagger Core](https://github.com/swagger-api/swagger-core)?
+
+- It lags behind the spec, and the team is reluctant to catch up when it would incur breaking changes.
+- The model is polluted because it wants to do everything: ensure backward-compatibility with getters and setters,
+provide a builder interface, provide specific shortcut methods to handle collections. This means that there is a lot of
+legacy code to maintain, and that the model is more complicated than required.
+
 ## Swagger 2.0 Specification Support
 
 Fanfaron is able to deserialize all fields of all objects defined in the Swagger 2.0 specification, except for vendor
