@@ -59,28 +59,28 @@ The versioning follows semantic versioning.
 ### 6.0.0
 
 - *breaking* refactor: type mapping changed for `T | Reference Object`
-Previously, all types that could be unioned with a Reference Object had a `$ref` field. However those types are also
-used standalone in the specification. To bring the type mapping closer to the specification, these types no longuer have
-a `$ref` field. Impacted types are `Parameter` and `Response`. To deal with the union case, companion types were added
-and named using the pattern `TOrReference`: `ParameterOrReference` and `ResponseOrReference`. These two types extends
-their respective standalone type, and add a `$ref` field. It now as easy to distinguish places where references are
-accepted and those where they are not as it is in the specification.
+  - Previously, all types that could be unioned with a Reference Object had a `$ref` field. However those types are also
+  used standalone in the specification. To bring the type mapping closer to the specification, these types no longer
+  have a `$ref` field. Impacted types are `Parameter` and `Response`. To deal with the union case, companion types were
+  added and named using the pattern `TOrReference`: `ParameterOrReference` and `ResponseOrReference`. These two types
+  extends their respective standalone type, and add a `$ref` field. It now as easy to distinguish places where
+  references are accepted and those where they are not as it is in the specification.
 
 ### 5.0.1
 
 - fix: missing `$ref` in `Response`
-- refactor: replaced Guava's ForwardingMap by own class
-  - Guava is no longuer a dependency.
+- refactor: replaced Guava's `ForwardingMap` by own class
+  - Guava is no longer a dependency.
 
 ### 5.0.0
 
 - *breaking* feat: removed all default values
-  - `exclusiveMaximum` and `exclusiveMinimum` in `Header` no longuer default to `false`.
-  - `exclusiveMaximum` and `exclusiveMinimum` in `Items` no longuer default to `false`.
-  - `deprecated` in `Operation` no longuer defaults to `false.`
+  - `exclusiveMaximum` and `exclusiveMinimum` in `Header` no longer default to `false`.
+  - `exclusiveMaximum` and `exclusiveMinimum` in `Items` no longer default to `false`.
+  - `deprecated` in `Operation` no longer defaults to `false.`
   - `required` in `Parameter` is now of type `Boolean` instead of `boolean`.
-  - `exclusiveMaximum` and `exclusiveMinimum` in `Parameter` no longuer default to `false`.
-  - `wrapped` in `Xml` no longuer defaults to `false`.
+  - `exclusiveMaximum` and `exclusiveMinimum` in `Parameter` no longer default to `false`.
+  - `wrapped` in `Xml` no longer defaults to `false`.
 
 ### 4.0.0
 
