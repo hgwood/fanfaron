@@ -69,6 +69,8 @@ accepted and those where they are not as it is in the specification.
 ### 5.0.1
 
 - fix: missing `$ref` in `Response`
+- refactor: replaced Guava's ForwardingMap by own class
+  - Guava is no longuer a dependency.
 
 ### 5.0.0
 
