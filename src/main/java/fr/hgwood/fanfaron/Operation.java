@@ -3,6 +3,9 @@ package fr.hgwood.fanfaron;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#operationObject
+ */
 public class Operation {
     public List<String> tags;
     public String summary;

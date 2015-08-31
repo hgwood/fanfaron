@@ -2,6 +2,9 @@ package fr.hgwood.fanfaron;
 
 import java.util.Objects;
 
+/**
+ * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#tagObject
+ */
 public class Tag {
     public String name;
     public String description;

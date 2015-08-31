@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 import java.util.Objects;
 
+/**
+ * http://json-schema.org/latest/json-schema-validation.html#anchor64
+ */
 public class AdditionalProperties {
     public Boolean allowed;
     public Schema schema;
@@ -12,8 +15,7 @@ public class AdditionalProperties {
 
     }
 
-    @JsonCreator
-    public AdditionalProperties(Boolean allowed) {
+    @JsonCreator public AdditionalProperties(Boolean allowed) {
         this.allowed = allowed;
     }
 
@@ -33,5 +35,4 @@ public class AdditionalProperties {
     @Override public int hashCode() {
         return Objects.hash(allowed, schema);
     }
-
 }

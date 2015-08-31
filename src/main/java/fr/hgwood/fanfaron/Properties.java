@@ -5,12 +5,13 @@ import com.google.common.collect.ForwardingMap;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * http://json-schema.org/latest/json-schema-validation.html#anchor64
+ */
 public class Properties extends ForwardingMap<String, Schema> {
-
     private final Map<String, Schema> properties = new HashMap<>();
 
     @Override protected Map<String, Schema> delegate() {
         return properties;
     }
-
 }
