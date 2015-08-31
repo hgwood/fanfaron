@@ -56,6 +56,10 @@ or any kind of validation. Those belong in adapters and validators, which may be
 
 The versioning follows semantic versioning.
 
+### 5.0.1
+
+- fix: missing `$ref` in `Response`
+
 ### 5.0.0
 
 - *breaking* feat: removed all default values
@@ -83,6 +87,8 @@ The versioning follows semantic versioning.
 ### 3.1.0
 
 - feat: support for all fields of all objects defined in the Swagger 2.0 specification except for `Schema` and `Xml`
+
+> **Edit**: it was found later that the `$ref` field was missing from `Response`. This is fixed in 5.0.1.
 
 ### 3.0.1
 
