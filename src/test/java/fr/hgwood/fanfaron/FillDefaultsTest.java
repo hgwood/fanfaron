@@ -1,15 +1,19 @@
 package fr.hgwood.fanfaron;
 
 import com.google.common.base.Function;
-import com.google.common.base.Predicates;
-import com.google.common.collect.*;
+import com.google.common.collect.FluentIterable;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Iterables;
 import fr.hgwood.fanfaron.utils.DefaultFiller;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Map;
 
-import static java.util.Arrays.asList;
-import static java.util.Collections.emptyList;
+import static com.google.common.base.MoreObjects.firstNonNull;
+import static com.google.common.base.Predicates.notNull;
+import static com.google.common.collect.Iterables.filter;
 import static org.junit.Assert.assertEquals;
 
 public class FillDefaultsTest {
@@ -198,109 +202,120 @@ public class FillDefaultsTest {
     }
 
     private Iterable<Xml> getXmls(Swagger swagger) {
-        return nonNulls(Iterables.transform(getSchemas(swagger), new Function<Schema, Xml>() {
-            @Override public Xml apply(Schema input) {
-                return input.xml;
-            }
-        }));
+        return FluentIterable
+            .from(getSchemas(swagger))
+            .transform(new Function<Schema, Xml>() {
+                @Override public Xml apply(Schema input) {
+                    return input.xml;
+                }
+            })
+            .filter(notNull());
     }
 
     private Iterable<Schema> getSchemas(Swagger swagger) {
-        return nonNulls(Iterables.concat(
-            Iterables.transform(getParameters(swagger), new Function<Parameter, Schema>() {
+        Iterable<Schema> schemasFromParameters = FluentIterable.from(getParameters(swagger))
+            .transform(new Function<Parameter, Schema>() {
                 @Override public Schema apply(Parameter input) {
                     return input.schema;
                 }
-            }),
-            Iterables.transform(getResponses(swagger), new Function<Response, Schema>() {
+            });
+        Iterable<Schema> schemasfromResponses = FluentIterable.from(getResponses(swagger))
+            .transform(new Function<Response, Schema>() {
                 @Override public Schema apply(Response input) {
                     return input.schema;
                 }
-            }),
-            getValues(swagger.definitions)
-        ));
+            });
+        return FluentIterable.from(getValues(swagger.definitions))
+            .append(schemasFromParameters)
+            .append(schemasfromResponses)
+            .filter(notNull());
     }
 
     private <T> Iterable<T> getValues(Map<?, T> map) {
-        return map == null ? Collections.<T>emptyList() : map.values();
+        return filter(firstNonNull(map, Collections.<Object, T>emptyMap()).values(), notNull());
     }
 
     private <T> Iterable<T> getValues(Iterable<T> iterable) {
-        return iterable == null ? Collections.<T>emptyList() : iterable;
+        return filter(firstNonNull(iterable, Collections.<T>emptyList()), notNull());
     }
 
     private Iterable<Items> getItems(Swagger swagger) {
-        Iterable<Items> items = nonNulls(Iterables.concat(
-            Iterables.transform(getParameters(swagger), new Function<Parameter, Items>() {
+        FluentIterable<Items> itemsFromParameters = FluentIterable.from(getParameters(swagger))
+            .transform(new Function<Parameter, Items>() {
                 @Override public Items apply(Parameter input) {
                     return input.items;
                 }
-            }),
-            Iterables.transform(getHeaders(swagger), new Function<Header, Items>() {
+            })
+            .filter(notNull());
+        FluentIterable<Items> itemsFromHeaders = FluentIterable.from(getHeaders(swagger))
+            .transform(new Function<Header, Items>() {
                 @Override public Items apply(Header input) {
                     return input.items;
                 }
-            })));
-        Iterable<Items> nestedItems = nonNulls(Iterables.transform(items, new Function<Items, Items>() {
-            @Override public Items apply(Items input) {
-                return input.items;
-            }
-        }));
-        return Iterables.concat(items, nestedItems);
+            })
+            .filter(notNull());
+        Iterable<Items> itemsFromItems = itemsFromParameters.append(itemsFromHeaders)
+            .transform(new Function<Items, Items>() {
+                @Override public Items apply(Items input) {
+                    return input.items;
+                }
+            })
+            .filter(notNull());
+        return Iterables.concat(itemsFromParameters, itemsFromHeaders, itemsFromItems);
     }
 
     private Iterable<Operation> getOperations(Swagger swagger) {
-        return Iterables.concat(Iterables.transform(swagger.paths.values(), new Function<PathItem, Iterable<Operation>>() {
-            @Override public Iterable<Operation> apply(PathItem pathItem) {
-                return getOperations(pathItem);
-            }
-        }));
+        return FluentIterable.from(getValues(swagger.paths))
+            .transformAndConcat(new Function<PathItem, Iterable<Operation>>() {
+                @Override public Iterable<Operation> apply(PathItem pathItem) {
+                    return getOperations(pathItem);
+                }
+            });
     }
 
     private Iterable<Operation> getOperations(PathItem pathItem) {
-        return nonNulls(asList(pathItem.get, pathItem.put, pathItem.post, pathItem.delete, pathItem.options, pathItem.head, pathItem.patch));
-    }
-
-    private <T> Iterable<T> nonNulls(Iterable<T> iterable) {
-        return Iterables.filter(iterable, Predicates.notNull());
+        return FluentIterable.of(new Operation[] {
+            pathItem.get, pathItem.put, pathItem.post, pathItem.delete, pathItem.options, pathItem.head, pathItem.patch
+        }).filter(notNull());
     }
 
     private Iterable<Parameter> getParameters(Swagger swagger) {
-        return Iterables.concat(
-            getValues(swagger.parameters),
-            Iterables.concat(Iterables.transform(swagger.paths.values(), new Function<PathItem, Iterable<? extends Parameter>>() {
+        return FluentIterable.from(getValues(swagger.paths))
+            .transformAndConcat(new Function<PathItem, Iterable<? extends Parameter>>() {
                 @Override public Iterable<? extends Parameter> apply(PathItem input) {
                     return getParameters(input);
                 }
-            })));
+            })
+            .append(getValues(swagger.parameters));
     }
 
     private Iterable<Parameter> getParameters(PathItem pathItem) {
-        return nonNulls(Iterables.concat(
-            getValues(pathItem.parameters),
-            Iterables.concat(Iterables.transform(getOperations(pathItem), new Function<Operation, Iterable<? extends Parameter>>() {
+        return FluentIterable.from(getOperations(pathItem))
+            .transformAndConcat(new Function<Operation, Iterable<? extends Parameter>>() {
                 @Override public Iterable<? extends Parameter> apply(Operation input) {
                     return getValues(input.parameters);
                 }
-            }))));
+            })
+            .append(getValues(pathItem.parameters));
     }
 
     private Iterable<Response> getResponses(Swagger swagger) {
-        return nonNulls(Iterables.concat(
-            getValues(swagger.responses),
-            Iterables.concat(Iterables.transform(getOperations(swagger), new Function<Operation, Iterable<? extends Response>>() {
+        return FluentIterable.from(getOperations(swagger))
+            .transformAndConcat(new Function<Operation, Iterable<? extends Response>>() {
                 @Override public Iterable<? extends Response> apply(Operation input) {
                     return getValues(input.responses);
                 }
-            }))));
+            })
+            .append(getValues(swagger.responses));
     }
 
     private Iterable<Header> getHeaders(Swagger swagger) {
-        return nonNulls(Iterables.concat(Iterables.transform(getResponses(swagger), new Function<Response, Iterable<Header>>() {
-            @Override public Iterable<Header> apply(Response input) {
-                return getValues(input.headers);
-            }
-        })));
+        return FluentIterable.from(getResponses(swagger))
+            .transformAndConcat(new Function<Response, Iterable<Header>>() {
+                @Override public Iterable<Header> apply(Response input) {
+                    return getValues(input.headers);
+                }
+            });
     }
 
 }
