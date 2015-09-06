@@ -8,14 +8,6 @@ public class DefaultFiller {
 
     public Swagger fillDefaults(Swagger swagger) {
         Swagger result = new Swagger();
-        result.paths = new Paths();
-
-        result.parameters = new ParametersDefinitions();
-        for (Map.Entry<String, Parameter> entryInParameters : swagger.parameters.entrySet()) {
-            Parameter parameter = fillDefaults(entryInParameters.getValue());
-            result.parameters.put(entryInParameters.getKey(), parameter);
-        }
-
         result.paths = fillDefaults(swagger.paths);
         result.parameters = fillDefaults(swagger.parameters);
         result.responses = fillDefaults(swagger.responses);
