@@ -11,10 +11,14 @@ legacy code to maintain, and that the model is more complicated than required.
 
 ## Swagger 2.0 Specification Support
 
-Fanfaron is able to deserialize all fields of all objects defined in the Swagger 2.0 specification, except for vendor
-extensions, which are not supported. However, there is no kind of validation whatsoever, aside from very basic type
-correctness (see Type mapping). For example, while the specification says the value of the root `swagger` field "MUST
-be `"2.0"`", Fanfaron makes no such verification.
+Fanfaron is able to deserialize all fields of all objects defined in the Swagger 2.0 specification, with the following
+limitations:
+- The `items` field of the [Schema Object](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#schemaObject) can only be a schema (not an array of schemas).
+- Vendor extensions are not supported.
+
+Furthermore, there is no kind of validation whatsoever, aside from very basic type correctness (see Type mapping). For
+example, while the specification says the value of the root `swagger` field "MUST be `"2.0"`", Fanfaron makes no such
+verification.
 
 ## Other Features
 
@@ -101,6 +105,9 @@ The versioning follows semantic versioning.
 - feat: support for all fields of all objects defined in the Swagger 2.0 specification except for `Schema` and `Xml`
 
 > **Edit**: it was found later that the `$ref` field was missing from `Response`. This is fixed in 5.0.1.
+
+> **Edit**: it was found later that the `items` field from the spec's Schema object supports both a schema and an array
+> of schemas. Fanfaron 3.1.0 only supports the first case.
 
 ### 3.0.1
 
