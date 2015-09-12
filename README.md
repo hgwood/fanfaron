@@ -2,6 +2,17 @@
 
 A no-surprise Java model of the [Swagger 2.0 specification](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md).
 
+## Get Started
+
+Use [Jackson Databind](https://github.com/FasterXML/jackson-databind/)'s `ObjectMapper` to read the serialized Swagger
+into Fanfaron's `Swagger` class.
+
+```java
+try (InputStream swaggerStream = getClass().getResourceAsStream("swagger.json")) {
+    return new ObjectMapper().readValue(swaggerStream, fr.hgwood.fanfaron.Swagger.class);
+}
+```
+
 ## What's wrong with [Swagger Core](https://github.com/swagger-api/swagger-core)?
 
 - It lags behind the spec, and the team is reluctant to catch up when it would incur breaking changes.
