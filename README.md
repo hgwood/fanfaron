@@ -33,7 +33,13 @@ verification.
 
 ## Other Features
 
-- Structural equality (if all fields of 2 objects are equal, then these 2 objects are equal) 
+- Structural equality: if all fields of 2 objects are equal, then these 2 objects are equal.
+- Value defaulting: any model object can be traversed to set all default values defined by the spec.
+
+```java
+Operation withDefaults = new DefaultFiller().fillDefaults(new Operation());
+assertEquals(false, withDefaults.deprecated);
+```
 
 ## Technical choices
 
@@ -85,6 +91,11 @@ higher-level model with proper Java types and useful methods.
 ## Changelog
 
 The versioning follows semantic versioning.
+
+### 6.1.0
+
+- feat: recursive value defaulting
+  - Any model object can be traversed to set all default values defined by the spec.
 
 ### 6.0.0
 
