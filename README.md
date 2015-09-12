@@ -67,6 +67,21 @@ boolean, and `schema` for the Schema Object.
 The classes directly mapping the spec are only meant to do just that, and nothing else. They will never have accessors
 or any kind of validation. Those belong in adapters and validators, which may be added into this library in the future.
 
+## Roadmap
+
+- Validation
+- An easier way to build a model from Java
+- An easier way to work with the model, either through utility functions that manipulate the JSON model, or a
+higher-level model with proper Java types and useful methods.
+  - Optional and empty collections instead of null
+  - Value to key references for objects with patterned fields (operation to HTTP method, response to status code, ...)
+  - Dereferencing
+  - Traversal
+  - Collecting all entities of the same type (all parameters, all responses, ...)
+  - Types guarantee valid entities
+  - Other things?
+- Vendor extensions support
+
 ## Changelog
 
 The versioning follows semantic versioning.
