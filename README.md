@@ -12,7 +12,7 @@ Swagger features, like global security requirements, which are impossible to ext
 ### Build
 
 ```
-gradle jar
+mvn install
 ```
 
 ### Usage
