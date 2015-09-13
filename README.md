@@ -2,6 +2,11 @@
 
 A no-surprise Java model of the [Swagger 2.0 specification](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md).
 
+Fanfaron allows developers to work with Swagger 2.0 definitions using Java. It is an alternative to the swagger-model
+module of the swagger-core project. The main advantage over swagger-module is that it is better aligned with the
+specification: the model is simpler and matches the specification more closely. This enables Fanfaron to better support
+Swagger features, like global security requirements, which are impossible to extract today using swagger-model 1.5.3.
+
 ## Get Started
 
 Use [Jackson Databind](https://github.com/FasterXML/jackson-databind/)'s `ObjectMapper` to read the serialized Swagger
@@ -24,7 +29,8 @@ legacy code to maintain, and that the model is more complicated than required.
 
 Fanfaron is able to deserialize all fields of all objects defined in the Swagger 2.0 specification, with the following
 limitations:
-- The `items` field of the [Schema Object](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#schemaObject) can only be a schema (not an array of schemas).
+- The `items` field of the [Schema Object](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#schemaObject)
+can only be a schema (not an array of schemas).
 - Vendor extensions are not supported.
 
 Furthermore, there is no kind of validation whatsoever, aside from very basic type correctness (see Type mapping). For
@@ -63,9 +69,9 @@ T \| Reference Object | TOrReference
 
 Furthermore, objects with dynamically-named fields of type `T` are mapped using classes that implement `Map<String, T>`.
 
-Only one class has a non-obvious mapping: `AdditionalProperties` (the type of the `additionalProperties` field in the 
+Only one class has a non-obvious mapping: `AdditionalProperties` (the type of the `additionalProperties` field in the
 Schema Object). This is because this field can contain either a boolean value or a Schema Object, and that is not
-representable in Java. Therefore, `AdditionalProperties` has 2 fields, one for each possibility: `allowed` for the 
+representable in Java. Therefore, `AdditionalProperties` has 2 fields, one for each possibility: `allowed` for the
 boolean, and `schema` for the Schema Object.
 
 ### Public fields??
