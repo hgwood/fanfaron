@@ -9,6 +9,14 @@ Swagger features, like global security requirements, which are impossible to ext
 
 ## Get Started
 
+### Build
+
+```
+gradle jar
+```
+
+### Usage
+
 Use [Jackson Databind](https://github.com/FasterXML/jackson-databind/)'s `ObjectMapper` to read the serialized Swagger
 into Fanfaron's `Swagger` class.
 
@@ -94,7 +102,7 @@ higher-level model with proper Java types and useful methods.
   - Other things?
 - Vendor extensions support
 
-## Changelog
+## Change log
 
 The versioning follows semantic versioning.
 
