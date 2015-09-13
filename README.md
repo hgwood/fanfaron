@@ -106,6 +106,10 @@ higher-level model with proper Java types and useful methods.
 
 The versioning follows semantic versioning.
 
+### 6.2.0
+
+- chore: migrated build to Maven
+
 ### 6.1.0
 
 - feat: recursive value defaulting
