@@ -1,6 +1,7 @@
 package fr.hgwood.fanfaron;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import fr.hgwood.fanfaron.utils.WithVendorExtensions;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -10,7 +11,7 @@ import java.util.Objects;
 /**
  * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#parameterObject
  */
-public class Parameter {
+public class Parameter extends WithVendorExtensions {
     public String name;
     public String in;
     public String description;
@@ -62,7 +63,8 @@ public class Parameter {
             && Objects.equals(minItems, other.minItems)
             && Objects.equals(uniqueItems, other.uniqueItems)
             && Objects.equals(_enum, other._enum)
-            && Objects.equals(multipleOf, other.multipleOf);
+            && Objects.equals(multipleOf, other.multipleOf)
+            && Objects.equals(vendorExtensions, other.vendorExtensions);
     }
 
     @Override public int hashCode() {
@@ -89,6 +91,7 @@ public class Parameter {
             minItems,
             uniqueItems,
             _enum,
-            multipleOf);
+            multipleOf,
+            vendorExtensions);
     }
 }

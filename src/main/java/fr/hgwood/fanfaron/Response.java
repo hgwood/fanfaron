@@ -1,11 +1,13 @@
 package fr.hgwood.fanfaron;
 
+import fr.hgwood.fanfaron.utils.WithVendorExtensions;
+
 import java.util.Objects;
 
 /**
  * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#responseObject
  */
-public class Response {
+public class Response extends WithVendorExtensions {
     public String description;
     public Schema schema;
     public Headers headers;
@@ -19,7 +21,8 @@ public class Response {
         return Objects.equals(description, other.description)
             && Objects.equals(schema, other.schema)
             && Objects.equals(headers, other.headers)
-            && Objects.equals(examples, other.examples);
+            && Objects.equals(examples, other.examples)
+            && Objects.equals(vendorExtensions, other.vendorExtensions);
     }
 
     @Override public int hashCode() {

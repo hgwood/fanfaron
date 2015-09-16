@@ -1,12 +1,14 @@
 package fr.hgwood.fanfaron;
 
+import fr.hgwood.fanfaron.utils.WithVendorExtensions;
+
 import java.util.List;
 import java.util.Objects;
 
 /**
  * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#operationObject
  */
-public class Operation {
+public class Operation extends WithVendorExtensions {
     public List<String> tags;
     public String summary;
     public String description;
@@ -36,7 +38,8 @@ public class Operation {
             && Objects.equals(responses, other.responses)
             && Objects.equals(schemes, other.schemes)
             && Objects.equals(deprecated, other.deprecated)
-            && Objects.equals(security, other.security);
+            && Objects.equals(security, other.security)
+            && Objects.equals(vendorExtensions, other.vendorExtensions);
     }
 
     @Override public int hashCode() {
@@ -51,6 +54,7 @@ public class Operation {
             responses,
             schemes,
             deprecated,
-            security);
+            security,
+            vendorExtensions);
     }
 }

@@ -1,11 +1,13 @@
 package fr.hgwood.fanfaron;
 
+import fr.hgwood.fanfaron.utils.WithVendorExtensions;
+
 import java.util.Objects;
 
 /**
  * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#contactObject
  */
-public class Contact {
+public class Contact extends WithVendorExtensions {
     public String name;
     public String url;
     public String email;
@@ -17,10 +19,11 @@ public class Contact {
         Contact other = (Contact)obj;
         return Objects.equals(name, other.name)
             && Objects.equals(url, other.url)
-            && Objects.equals(email, other.email);
+            && Objects.equals(email, other.email)
+            && Objects.equals(vendorExtensions, other.vendorExtensions);
     }
 
     @Override public int hashCode() {
-        return Objects.hash(name, url, email);
+        return Objects.hash(name, url, email, vendorExtensions);
     }
 }

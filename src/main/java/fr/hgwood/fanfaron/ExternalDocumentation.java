@@ -1,8 +1,10 @@
 package fr.hgwood.fanfaron;
 
+import fr.hgwood.fanfaron.utils.WithVendorExtensions;
+
 import java.util.Objects;
 
-public class ExternalDocumentation {
+public class ExternalDocumentation extends WithVendorExtensions {
     public String description;
     public String url;
 
@@ -12,10 +14,11 @@ public class ExternalDocumentation {
         if (!(obj instanceof ExternalDocumentation)) return false;
         ExternalDocumentation other = (ExternalDocumentation)obj;
         return Objects.equals(description, other.description)
-            && Objects.equals(url, other.url);
+            && Objects.equals(url, other.url)
+            && Objects.equals(vendorExtensions, other.vendorExtensions);
     }
 
     @Override public int hashCode() {
-        return Objects.hash(description, url);
+        return Objects.hash(description, url, vendorExtensions);
     }
 }

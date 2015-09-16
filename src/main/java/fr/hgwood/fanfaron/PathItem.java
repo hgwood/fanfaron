@@ -1,12 +1,14 @@
 package fr.hgwood.fanfaron;
 
+import fr.hgwood.fanfaron.utils.WithVendorExtensions;
+
 import java.util.List;
 import java.util.Objects;
 
 /**
  * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#pathItemObject
  */
-public class PathItem {
+public class PathItem extends WithVendorExtensions {
     public String $ref;
     public Operation get;
     public Operation put;
@@ -30,10 +32,11 @@ public class PathItem {
             && Objects.equals(options, other.options)
             && Objects.equals(head, other.head)
             && Objects.equals(patch, other.patch)
-            && Objects.equals(parameters, other.parameters);
+            && Objects.equals(parameters, other.parameters)
+            && Objects.equals(vendorExtensions, other.vendorExtensions);
     }
 
     @Override public int hashCode() {
-        return Objects.hash($ref, get, put, post, delete, options, head, patch, parameters);
+        return Objects.hash($ref, get, put, post, delete, options, head, patch, parameters, vendorExtensions);
     }
 }

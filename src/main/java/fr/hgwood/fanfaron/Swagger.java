@@ -1,12 +1,14 @@
 package fr.hgwood.fanfaron;
 
+import fr.hgwood.fanfaron.utils.WithVendorExtensions;
+
 import java.util.List;
 import java.util.Objects;
 
 /**
  * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#swagger-object
  */
-public class Swagger {
+public class Swagger extends WithVendorExtensions {
     public String swagger;
     public Info info;
     public String host;
@@ -42,7 +44,8 @@ public class Swagger {
             && Objects.equals(securityDefinitions, other.securityDefinitions)
             && Objects.equals(security, other.security)
             && Objects.equals(tags, other.tags)
-            && Objects.equals(externalDocs, other.externalDocs);
+            && Objects.equals(externalDocs, other.externalDocs)
+            && Objects.equals(vendorExtensions, other.vendorExtensions);
     }
 
     @Override public int hashCode() {
@@ -60,6 +63,7 @@ public class Swagger {
             securityDefinitions,
             security,
             tags,
-            externalDocs);
+            externalDocs,
+            vendorExtensions);
     }
 }

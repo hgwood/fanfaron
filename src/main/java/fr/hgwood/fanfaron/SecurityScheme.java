@@ -1,11 +1,13 @@
 package fr.hgwood.fanfaron;
 
+import fr.hgwood.fanfaron.utils.WithVendorExtensions;
+
 import java.util.Objects;
 
 /**
  * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#securitySchemeObject
  */
-public class SecurityScheme {
+public class SecurityScheme extends WithVendorExtensions {
     public String type;
     public String description;
     public String name;
@@ -27,10 +29,11 @@ public class SecurityScheme {
             && Objects.equals(flow, other.flow)
             && Objects.equals(authorizationUrl, other.authorizationUrl)
             && Objects.equals(tokenUrl, other.tokenUrl)
-            && Objects.equals(scopes, other.scopes);
+            && Objects.equals(scopes, other.scopes)
+            && Objects.equals(vendorExtensions, other.vendorExtensions);
     }
 
     @Override public int hashCode() {
-        return Objects.hash(type, description, name, in, flow, authorizationUrl, tokenUrl, scopes);
+        return Objects.hash(type, description, name, in, flow, authorizationUrl, tokenUrl, scopes, vendorExtensions);
     }
 }

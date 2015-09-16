@@ -1,13 +1,14 @@
 package fr.hgwood.fanfaron;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import fr.hgwood.fanfaron.utils.WithVendorExtensions;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Objects;
 
-public class Items {
+public class Items extends WithVendorExtensions {
     public String type;
     public String format;
     public Items items;
@@ -47,7 +48,8 @@ public class Items {
             && Objects.equals(minItems, other.minItems)
             && Objects.equals(uniqueItems, other.uniqueItems)
             && Objects.equals(_enum, other._enum)
-            && Objects.equals(multipleOf, other.multipleOf);
+            && Objects.equals(multipleOf, other.multipleOf)
+            && Objects.equals(vendorExtensions, other.vendorExtensions);
     }
 
     @Override public int hashCode() {
@@ -68,6 +70,7 @@ public class Items {
             minItems,
             uniqueItems,
             _enum,
-            multipleOf);
+            multipleOf,
+            vendorExtensions);
     }
 }

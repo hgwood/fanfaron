@@ -1,11 +1,13 @@
 package fr.hgwood.fanfaron;
 
+import fr.hgwood.fanfaron.utils.WithVendorExtensions;
+
 import java.util.Objects;
 
 /**
  * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#tagObject
  */
-public class Tag {
+public class Tag extends WithVendorExtensions {
     public String name;
     public String description;
     public ExternalDocumentation externalDocs;
@@ -17,10 +19,11 @@ public class Tag {
         Tag other = (Tag)obj;
         return Objects.equals(name, other.name)
             && Objects.equals(description, other.description)
-            && Objects.equals(externalDocs, other.externalDocs);
+            && Objects.equals(externalDocs, other.externalDocs)
+            && Objects.equals(vendorExtensions, other.vendorExtensions);
     }
 
     @Override public int hashCode() {
-        return Objects.hash(name, description, externalDocs);
+        return Objects.hash(name, description, externalDocs, vendorExtensions);
     }
 }

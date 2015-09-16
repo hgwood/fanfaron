@@ -1,11 +1,13 @@
 package fr.hgwood.fanfaron;
 
+import fr.hgwood.fanfaron.utils.WithVendorExtensions;
+
 import java.util.Objects;
 
 /**
  * https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#xmlObject
  */
-public class Xml {
+public class Xml extends WithVendorExtensions {
     public String name;
     public String namespace;
     public String prefix;
@@ -21,10 +23,11 @@ public class Xml {
             && Objects.equals(namespace, other.namespace)
             && Objects.equals(prefix, other.prefix)
             && Objects.equals(attribute, other.attribute)
-            && Objects.equals(wrapped, other.wrapped);
+            && Objects.equals(wrapped, other.wrapped)
+            && Objects.equals(vendorExtensions, other.vendorExtensions);
     }
 
     @Override public int hashCode() {
-        return Objects.hash(name, namespace, prefix, attribute, wrapped);
+        return Objects.hash(name, namespace, prefix, attribute, wrapped, vendorExtensions);
     }
 }

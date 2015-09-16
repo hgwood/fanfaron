@@ -1,5 +1,6 @@
 package fr.hgwood.fanfaron;
 
+import fr.hgwood.fanfaron.utils.VendorExtensions;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
@@ -67,7 +68,11 @@ public class StructuralEqualityTest {
         else if (field.getType() == Boolean.class) field.set(mutated, true);
         else if (field.getType() == BigInteger.class) field.set(mutated, BigInteger.ONE);
         else if (field.getType() == BigDecimal.class) field.set(mutated, BigDecimal.ONE);
-        else {
+        else if (field.getName().equals("vendorExtensions")) {
+            VendorExtensions mutatedVendorExtensions = new VendorExtensions();
+            mutatedVendorExtensions.put("x-key", "value");
+            field.set(mutated, mutatedVendorExtensions);
+        } else {
             try {
                 field.set(mutated, field.getType().newInstance());
             } catch (InstantiationException e) {
