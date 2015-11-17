@@ -39,7 +39,6 @@ Fanfaron is able to deserialize all fields of all objects defined in the Swagger
 limitations:
 - The `items` field of the [Schema Object](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#schemaObject)
 can only be a schema (not an array of schemas).
-- Vendor extensions are not supported.
 
 Furthermore, there is no kind of validation whatsoever, aside from very basic type correctness (see Type mapping). For
 example, while the specification says the value of the root `swagger` field "MUST be `"2.0"`", Fanfaron makes no such
@@ -89,6 +88,7 @@ or any kind of validation. Those belong in adapters and validators, which may be
 
 ## Roadmap
 
+- 100% spec support
 - Validation
 - An easier way to build a model from Java
 - An easier way to work with the model, either through utility functions that manipulate the JSON model, or a
@@ -100,11 +100,15 @@ higher-level model with proper Java types and useful methods.
   - Collecting all entities of the same type (all parameters, all responses, ...)
   - Types guarantee valid entities
   - Other things?
-- Vendor extensions support
 
 ## Change log
 
 The versioning follows semantic versioning.
+
+### 6.3.0
+
+- feat: added vendor extensions support
+- fix: added `hashCode` to `DynamicObject`
 
 ### 6.2.0
 
