@@ -70,8 +70,8 @@ assertEquals(false, withDefaults.deprecated);
 
 ## Technical choices
 
-The objects defined by the spec are modeled in the simplest way possible, which is as value types: Java classes with
-public fields and a correct `equals` implementation.
+The objects defined by the spec are modeled in the simplest way possible, which is as Java classes with public fields 
+and `equals` and `hashCode` implementations that use all fields.
 
 ### Type mapping
 
