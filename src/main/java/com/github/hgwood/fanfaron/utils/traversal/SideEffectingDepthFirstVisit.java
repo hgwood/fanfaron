@@ -166,6 +166,16 @@ public class SideEffectingDepthFirstVisit {
         visitor.visit(schema);
     }
 
+    public void traverse(SchemaOrListOfSchemas schemaOrListOfSchemas) {
+        if (schemaOrListOfSchemas.schema != null) traverse(schemaOrListOfSchemas.schema);
+        else if (schemaOrListOfSchemas.schemas != null) {
+            for (Schema schema : schemaOrListOfSchemas.schemas) {
+                traverse(schema);
+            }
+        }
+        visitor.visit(schemaOrListOfSchemas);
+    }
+
     private void traverseFields(Schema schema) {
         if (schema.items != null) traverse(schema.items);
         if (schema.allOf != null) {

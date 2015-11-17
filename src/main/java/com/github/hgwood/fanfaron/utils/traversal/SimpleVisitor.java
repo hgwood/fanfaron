@@ -120,6 +120,11 @@ public class SimpleVisitor implements Visitor {
     }
 
     @Override
+    public void visit(SchemaOrListOfSchemas schemaOrListOfSchemas) {
+
+    }
+
+    @Override
     public void visit(Scopes scopes) {
 
     }

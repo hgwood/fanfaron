@@ -2,6 +2,10 @@ package com.github.hgwood.fanfaron.utils.traversal;
 
 import com.github.hgwood.fanfaron.*;
 
+/**
+ * Consider depending on {@link SimpleVisitor} instead of this interface to prevent your code from breaking when methods
+ * are added.
+ */
 public interface Visitor {
     void visit(AdditionalProperties additionalProperties);
     void visit(Contact contact);
@@ -26,6 +30,7 @@ public interface Visitor {
     void visit(ResponsesDefinitions responsesDefinitions);
     void visit(Schema schema);
     void visit(Schema schema, String name);
+    void visit(SchemaOrListOfSchemas schemaOrListOfSchemas);
     void visit(Scopes scopes);
     void visit(SecurityDefinitions securityDefinitions);
     void visit(SecurityRequirement securityRequirement);

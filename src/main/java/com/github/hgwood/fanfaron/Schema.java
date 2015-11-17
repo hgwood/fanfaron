@@ -32,7 +32,7 @@ public class Schema {
     public List<String> required;
     @JsonProperty("enum") public List<Object> _enum;
     public String type;
-    public Schema items;
+    public SchemaOrListOfSchemas items;
     public List<Schema> allOf;
     public Properties properties;
     public AdditionalProperties additionalProperties;

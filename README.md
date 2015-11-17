@@ -9,18 +9,21 @@ Swagger features, like global security requirements, which are impossible to ext
 
 ## Get Started
 
+Fanfaron requires Java 7 or later. Be advised that moving to Java 8 is being considered, although model classes will
+preferably stay clear of any Java 8 features, so that they remain extractable for use in lower versions.
+
 ### [Get from Maven Central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22fanfaron%22)...
 
 ```
 <dependency>
   <groupId>com.github.hgwood.fanfaron</groupId>
   <artifactId>fanfaron</artifactId>
-  <version>7.0.0</version>
+  <version>8.0.0</version>
 </dependency>
 ```
 
 ```
-group: 'com.github.hgwood.fanfaron', name: 'fanfaron', version: '6.3.0'
+group: 'com.github.hgwood.fanfaron', name: 'fanfaron', version: '8.0.0'
 ```
 
 ### ...or build from sources
@@ -49,10 +52,8 @@ legacy code to maintain, and that the model is more complicated than required.
 
 ## Swagger 2.0 Specification Support
 
-Fanfaron is able to deserialize all fields of all objects defined in the Swagger 2.0 specification, with the following
-limitations:
-- The `items` field of the [Schema Object](https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md#schemaObject)
-can only be a schema (not an array of schemas).
+Fanfaron is able to deserialize all fields of all objects defined in the Swagger 2.0 specification, without known 
+limitation. Please open an issue if you detect any.
 
 Furthermore, there is no kind of validation whatsoever, aside from very basic type correctness (see Type mapping). For
 example, while the specification says the value of the root `swagger` field "MUST be `"2.0"`", Fanfaron makes no such
@@ -135,7 +136,6 @@ or any kind of validation. Those belong in adapters and validators, which may be
 
 ## Roadmap
 
-- 100% spec support (see #1)
 - Validation
 - An easier way to build a model from Java
 - An easier way to work with the model, either through utility functions that manipulate the JSON model, or a
@@ -151,6 +151,12 @@ higher-level model with proper Java types and useful methods.
 ## Change log
 
 The versioning follows semantic versioning.
+
+### 8.0.0
+
+- *breaking* feat: added support for `Schema.items` being both a `Schema` and a list of `Schema`s
+  - This is a breaking change because it adds a method to the `Visitor` interface. If you are depending on 
+  `SimpleVisitor` then you should not be affected.
 
 ### 7.0.0
 
