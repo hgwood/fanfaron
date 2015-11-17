@@ -67,4 +67,8 @@ public class DynamicObject<T> implements Map<String, T> {
     @Override public boolean equals(Object obj) {
         return delegate.equals(obj);
     }
+
+    @Override public int hashCode() {
+        return delegate.hashCode();
+    }
 }
