@@ -9,7 +9,21 @@ Swagger features, like global security requirements, which are impossible to ext
 
 ## Get Started
 
-### Build
+### [Get from Maven Central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22fanfaron%22)...
+
+```
+<dependency>
+  <groupId>com.github.hgwood.fanfaron</groupId>
+  <artifactId>fanfaron</artifactId>
+  <version>6.3.0</version>
+</dependency>
+```
+
+```
+group: 'com.github.hgwood.fanfaron', name: 'fanfaron', version: '6.3.0'
+```
+
+### ...or build from sources
 
 ```
 mvn install
