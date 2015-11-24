@@ -119,6 +119,12 @@ higher-level model with proper Java types and useful methods.
 
 The versioning follows semantic versioning.
 
+### 6.3.1
+
+- fix: recursive defaulting vastly improved
+  - It no longer chokes on `null`s while traversing the object tree.
+  - It no longer cuts out part of the object tree.
+
 ### 6.3.0
 
 - feat: added vendor extensions support
@@ -132,6 +138,9 @@ The versioning follows semantic versioning.
 
 - feat: recursive value defaulting
   - Any model object can be traversed to set all default values defined by the spec.
+  
+> **Edit**: it was found later that this new feature was incomplete and buggy due to insufficient testing. It was 
+> improved in 6.3.1.
 
 ### 6.0.0
 

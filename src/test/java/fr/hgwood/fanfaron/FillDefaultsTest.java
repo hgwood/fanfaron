@@ -4,7 +4,6 @@ import com.google.common.base.Function;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Iterables;
 import fr.hgwood.fanfaron.utils.DefaultFiller;
 import org.junit.Test;
 
@@ -13,7 +12,7 @@ import java.util.Map;
 
 import static com.google.common.base.MoreObjects.firstNonNull;
 import static com.google.common.base.Predicates.notNull;
-import static com.google.common.collect.Iterables.filter;
+import static com.google.common.collect.Iterables.*;
 import static org.junit.Assert.assertEquals;
 
 public class FillDefaultsTest {
@@ -126,14 +125,21 @@ public class FillDefaultsTest {
         assertEquals("existing value was overridden", true, withDefaults.wrapped);
     }
 
+    @Test public void travels_down_intermediaries_avoiding_nulls() {
+        DefaultFiller defaultFiller = new DefaultFiller();
+        defaultFiller.fillDefaults(new Swagger());
+        defaultFiller.fillDefaults(new Response());
+        defaultFiller.fillDefaults(new PathItem());
+    }
+
     @Test public void recursively_sets_defaults() {
         // Given
         Swagger swagger = new Swagger();
 
         Operation operation = new Operation();
         PathItem pathItem = new PathItem();
-        pathItem.get = operation;
-        pathItem.put = operation;
+        pathItem.get = new Operation();
+        pathItem.put = new Operation();
         pathItem.post = operation;
         pathItem.delete = operation;
         pathItem.options = operation;
@@ -173,28 +179,34 @@ public class FillDefaultsTest {
         Swagger withDefaults = new DefaultFiller().fillDefaults(swagger);
 
         // Then
+        assertEquals(size(getOperations(swagger)), size(getOperations(withDefaults)));
         for (Operation operationWithDefaults : getOperations(withDefaults)) {
             assertEquals(false, operationWithDefaults.deprecated);
         }
 
+        assertEquals(size(getParameters(swagger)), size(getParameters(withDefaults)));
         for (Parameter parameterWithDefaults : getParameters(withDefaults)) {
             assertEquals(false, parameterWithDefaults.required);
             assertEquals(false, parameterWithDefaults.allowEmptyValue);
             assertEquals("csv", parameterWithDefaults.collectionFormat);
         }
 
+        assertEquals(size(getHeaders(swagger)), size(getHeaders(withDefaults)));
         for (Header headerWithDefaults : getHeaders(withDefaults)) {
             assertEquals("csv", headerWithDefaults.collectionFormat);
         }
 
+        assertEquals(size(getItems(swagger)), size(getItems(withDefaults)));
         for (Items itemsWithDefaults : getItems(withDefaults)) {
             assertEquals("csv", itemsWithDefaults.collectionFormat);
         }
 
+        assertEquals(size(getSchemas(swagger)), size(getSchemas(withDefaults)));
         for (Schema schemaWithDefaults : getSchemas(withDefaults)) {
             assertEquals(false, schemaWithDefaults.readOnly);
         }
 
+        assertEquals(size(getXmls(swagger)), size(getXmls(withDefaults)));
         for (Xml xmlWithDefaults : getXmls(withDefaults)) {
             assertEquals(false, xmlWithDefaults.attribute);
             assertEquals(false, xmlWithDefaults.wrapped);
@@ -261,7 +273,7 @@ public class FillDefaultsTest {
                 }
             })
             .filter(notNull());
-        return Iterables.concat(itemsFromParameters, itemsFromHeaders, itemsFromItems);
+        return concat(itemsFromParameters, itemsFromHeaders, itemsFromItems);
     }
 
     private Iterable<Operation> getOperations(Swagger swagger) {

@@ -94,4 +94,28 @@ public class Parameter extends WithVendorExtensions {
             multipleOf,
             vendorExtensions);
     }
+
+    public void copyTo(Parameter destination) {
+        destination.name = this.name;
+        destination.in = this.in;
+        destination.description = this.description;
+        destination.required = this.required;
+        destination.schema = this.schema;
+        destination.type = this.type;
+        destination.format = this.format;
+        destination.allowEmptyValue = this.allowEmptyValue;
+        destination.items = this.items;
+        destination.collectionFormat = this.collectionFormat;
+        destination.maximum = this.maximum;
+        destination.exclusiveMaximum = this.exclusiveMaximum;
+        destination.minimum = this.minimum;
+        destination.exclusiveMinimum = this.exclusiveMinimum;
+        destination.maxLength = this.maxLength;
+        destination.minLength = this.minLength;
+        destination.pattern = this.pattern;
+        destination.maxItems = this.maxItems;
+        destination.minItems = this.minItems;
+        destination.uniqueItems = this.uniqueItems;
+        destination.multipleOf = this.multipleOf;
+    }
 }
