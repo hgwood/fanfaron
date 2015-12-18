@@ -5,6 +5,7 @@ import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import fr.hgwood.fanfaron.utils.DefaultFiller;
+import fr.hgwood.fanfaron.utils.SideEffectingDepthFirstVisit;
 import org.junit.Test;
 
 import java.util.Collections;
@@ -18,120 +19,130 @@ import static org.junit.Assert.assertEquals;
 public class FillDefaultsTest {
 
     @Test public void operation_deprecated_defaults_to_false() {
-        Operation withDefaults = new DefaultFiller().fillDefaults(new Operation());
-        assertEquals("default was not set", false, withDefaults.deprecated);
+        Operation operation = new Operation();
+        new DefaultFiller().visit(operation);
+        assertEquals("default was not set", false, operation.deprecated);
     }
 
     @Test public void operation_deprecated_no_override() {
         Operation operation = new Operation();
         operation.deprecated = true;
-        Operation withDefaults = new DefaultFiller().fillDefaults(operation);
-        assertEquals("existing value was overridden", true, withDefaults.deprecated);
+        new DefaultFiller().visit(operation);
+        assertEquals("existing value was overridden", true, operation.deprecated);
     }
 
     @Test public void parameter_required_defaults_to_false() {
-        Parameter withDefaults = new DefaultFiller().fillDefaults(new Parameter());
-        assertEquals("default was not set", false, withDefaults.required);
+        Parameter parameter = new Parameter();
+        new DefaultFiller().visit(parameter, null);
+        assertEquals("default was not set", false, parameter.required);
     }
 
     @Test public void parameter_required_no_override() {
         Parameter parameter = new Parameter();
         parameter.required = true;
-        Parameter withDefaults = new DefaultFiller().fillDefaults(parameter);
-        assertEquals("existing value was overridden", true, withDefaults.required);
+        new DefaultFiller().visit(parameter, null);
+        assertEquals("existing value was overridden", true, parameter.required);
     }
 
     @Test public void parameter_allowEmptyValue_defaults_to_false() {
-        Parameter withDefaults = new DefaultFiller().fillDefaults(new Parameter());
-        assertEquals("default was not set", false, withDefaults.allowEmptyValue);
+        Parameter parameter = new Parameter();
+        new DefaultFiller().visit(parameter, null);
+        assertEquals("default was not set", false, parameter.allowEmptyValue);
     }
 
     @Test public void parameter_allowEmptyValue_no_override() {
         Parameter parameter = new Parameter();
         parameter.allowEmptyValue = true;
-        Parameter withDefaults = new DefaultFiller().fillDefaults(parameter);
-        assertEquals("existing value was overridden", true, withDefaults.allowEmptyValue);
+        new DefaultFiller().visit(parameter, null);
+        assertEquals("existing value was overridden", true, parameter.allowEmptyValue);
     }
 
     @Test public void parameter_collectionFormat_defaults_to_csv() {
-        Parameter withDefaults = new DefaultFiller().fillDefaults(new Parameter());
-        assertEquals("default was not set", "csv", withDefaults.collectionFormat);
+        Parameter parameter = new Parameter();
+        new DefaultFiller().visit(parameter, null);
+        assertEquals("default was not set", "csv", parameter.collectionFormat);
     }
 
     @Test public void parameter_collectionFormat_no_override() {
         Parameter parameter = new Parameter();
         parameter.collectionFormat = "pipes";
-        Parameter withDefaults = new DefaultFiller().fillDefaults(parameter);
-        assertEquals("existing value was overridden", "pipes", withDefaults.collectionFormat);
+        new DefaultFiller().visit(parameter, null);
+        assertEquals("existing value was overridden", "pipes", parameter.collectionFormat);
     }
 
     @Test public void items_collectionFormat_defaults_to_csv() {
-        Items withDefaults = new DefaultFiller().fillDefaults(new Items());
-        assertEquals("default was not set", "csv", withDefaults.collectionFormat);
+        Items items = new Items();
+        new DefaultFiller().visit(items);
+        assertEquals("default was not set", "csv", items.collectionFormat);
     }
 
     @Test public void items_collectionFormat_no_override() {
         Items items = new Items();
         items.collectionFormat = "pipes";
-        Items withDefaults = new DefaultFiller().fillDefaults(items);
-        assertEquals("existing value was overridden", "pipes", withDefaults.collectionFormat);
+        new DefaultFiller().visit(items);
+        assertEquals("existing value was overridden", "pipes", items.collectionFormat);
     }
 
     @Test public void header_collectionFormat_defaults_to_csv() {
-        Header withDefaults = new DefaultFiller().fillDefaults(new Header());
-        assertEquals("default was not set", "csv", withDefaults.collectionFormat);
+        Header header = new Header();
+        new DefaultFiller().visit(header);
+        assertEquals("default was not set", "csv", header.collectionFormat);
     }
 
     @Test public void header_collectionFormat_no_override() {
         Header header = new Header();
         header.collectionFormat = "pipes";
-        Header withDefaults = new DefaultFiller().fillDefaults(header);
-        assertEquals("existing value was overridden", "pipes", withDefaults.collectionFormat);
+        new DefaultFiller().visit(header);
+        assertEquals("existing value was overridden", "pipes", header.collectionFormat);
     }
 
     @Test public void schema_readOnly_defaults_to_false() {
-        Schema withDefaults = new DefaultFiller().fillDefaults(new Schema());
-        assertEquals("default was not set", false, withDefaults.readOnly);
+        Schema schema = new Schema();
+        new DefaultFiller().visit(schema, null);
+        assertEquals("default was not set", false, schema.readOnly);
     }
 
     @Test public void schema_readOnly_no_override() {
         Schema schema = new Schema();
         schema.readOnly = true;
-        Schema withDefaults = new DefaultFiller().fillDefaults(schema);
-        assertEquals("existing value was overridden", true, withDefaults.readOnly);
+        new DefaultFiller().visit(schema, null);
+        assertEquals("existing value was overridden", true, schema.readOnly);
     }
 
     @Test public void xml_attribute_defaults_to_false() {
-        Xml withDefaults = new DefaultFiller().fillDefaults(new Xml());
-        assertEquals("default was not set", false, withDefaults.attribute);
+        Xml xml = new Xml();
+        new DefaultFiller().visit(xml);
+        assertEquals("default was not set", false, xml.attribute);
     }
 
     @Test public void xml_attribute_no_override() {
         Xml xml = new Xml();
         xml.attribute = true;
-        Xml withDefaults = new DefaultFiller().fillDefaults(xml);
-        assertEquals("existing value was overridden", true, withDefaults.attribute);
+        new DefaultFiller().visit(xml);
+        assertEquals("existing value was overridden", true, xml.attribute);
     }
 
     @Test public void xml_wrapped_defaults_to_false() {
-        Xml withDefaults = new DefaultFiller().fillDefaults(new Xml());
-        assertEquals("default was not set", false, withDefaults.wrapped);
+        Xml xml = new Xml();
+        new DefaultFiller().visit(xml);
+        assertEquals("default was not set", false, xml.wrapped);
     }
 
     @Test public void xml_wrapped_no_override() {
         Xml xml = new Xml();
         xml.wrapped = true;
-        Xml withDefaults = new DefaultFiller().fillDefaults(xml);
-        assertEquals("existing value was overridden", true, withDefaults.wrapped);
+        new DefaultFiller().visit(xml);
+        assertEquals("existing value was overridden", true, xml.wrapped);
     }
 
     @Test public void travels_down_intermediaries_avoiding_nulls() {
         DefaultFiller defaultFiller = new DefaultFiller();
-        defaultFiller.fillDefaults(new Swagger());
-        defaultFiller.fillDefaults(new Response());
-        defaultFiller.fillDefaults(new PathItem());
+        defaultFiller.visit(new Swagger());
+        defaultFiller.visit(new Response(), null);
+        defaultFiller.visit(new PathItem(), null);
     }
 
+    // TODO: this is a really a test of SideEffectingDepthFirstVisit and should move to another test class
     @Test public void recursively_sets_defaults() {
         // Given
         Swagger swagger = new Swagger();
@@ -176,38 +187,38 @@ public class FillDefaultsTest {
         schema.xml = xml;
 
         // When
-        Swagger withDefaults = new DefaultFiller().fillDefaults(swagger);
+        new SideEffectingDepthFirstVisit(new DefaultFiller()).traverse(swagger);
 
         // Then
-        assertEquals(size(getOperations(swagger)), size(getOperations(withDefaults)));
-        for (Operation operationWithDefaults : getOperations(withDefaults)) {
+        assertEquals(size(getOperations(swagger)), size(getOperations(swagger)));
+        for (Operation operationWithDefaults : getOperations(swagger)) {
             assertEquals(false, operationWithDefaults.deprecated);
         }
 
-        assertEquals(size(getParameters(swagger)), size(getParameters(withDefaults)));
-        for (Parameter parameterWithDefaults : getParameters(withDefaults)) {
+        assertEquals(size(getParameters(swagger)), size(getParameters(swagger)));
+        for (Parameter parameterWithDefaults : getParameters(swagger)) {
             assertEquals(false, parameterWithDefaults.required);
             assertEquals(false, parameterWithDefaults.allowEmptyValue);
             assertEquals("csv", parameterWithDefaults.collectionFormat);
         }
 
-        assertEquals(size(getHeaders(swagger)), size(getHeaders(withDefaults)));
-        for (Header headerWithDefaults : getHeaders(withDefaults)) {
+        assertEquals(size(getHeaders(swagger)), size(getHeaders(swagger)));
+        for (Header headerWithDefaults : getHeaders(swagger)) {
             assertEquals("csv", headerWithDefaults.collectionFormat);
         }
 
-        assertEquals(size(getItems(swagger)), size(getItems(withDefaults)));
-        for (Items itemsWithDefaults : getItems(withDefaults)) {
+        assertEquals(size(getItems(swagger)), size(getItems(swagger)));
+        for (Items itemsWithDefaults : getItems(swagger)) {
             assertEquals("csv", itemsWithDefaults.collectionFormat);
         }
 
-        assertEquals(size(getSchemas(swagger)), size(getSchemas(withDefaults)));
-        for (Schema schemaWithDefaults : getSchemas(withDefaults)) {
+        assertEquals(size(getSchemas(swagger)), size(getSchemas(swagger)));
+        for (Schema schemaWithDefaults : getSchemas(swagger)) {
             assertEquals(false, schemaWithDefaults.readOnly);
         }
 
-        assertEquals(size(getXmls(swagger)), size(getXmls(withDefaults)));
-        for (Xml xmlWithDefaults : getXmls(withDefaults)) {
+        assertEquals(size(getXmls(swagger)), size(getXmls(swagger)));
+        for (Xml xmlWithDefaults : getXmls(swagger)) {
             assertEquals(false, xmlWithDefaults.attribute);
             assertEquals(false, xmlWithDefaults.wrapped);
         }

@@ -61,14 +61,7 @@ verification.
 ## Other Features
 
 - Structural equality: if all fields of 2 objects are equal, then these 2 objects are equal.
-- Value defaulting: any model object can be traversed to set all default values defined by the spec.
-
-```java
-Operation withDefaults = new DefaultFiller().fillDefaults(new Operation());
-assertEquals(false, withDefaults.deprecated);
-```
-
-- Traversal with user-defined side-effects (SAX-style)
+- Traversal with user-defined side-effects (SAX-style).
 
 ```java
 new SideEffectingDepthFirstVisit(new SimpleVisitor() {
@@ -85,6 +78,27 @@ new SideEffectingDepthFirstVisit(new SimpleVisitor() {
     // use #visit(Schema) for unnamed schemas
   }
 }).run(swagger);
+```
+
+- Value defaulting: all default values defined by the spec can be set on any model object. Can be combined with a 
+traversal to set all defaults in a definition.
+
+```java
+// on a single object
+Operation operation = new Operation();
+new DefaultFiller().vist(operation);
+assertEquals(false, operation.deprecated);
+
+// on a definition
+Operation operation = new Operation();
+PathItem pathItem = new PathItem();
+pathItem.get = operation;
+Paths paths = new Paths();
+paths.put("/path", pathItem);
+Swagger swagger = new Swagger();
+swagger.paths = paths;
+new SideEffectingDepthFirstVisit(new DefaultFiller()).run(swagger);
+assertEquals(false, operation.deprecated);
 ```
 
 ## Technical choices
