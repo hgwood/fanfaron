@@ -68,6 +68,25 @@ Operation withDefaults = new DefaultFiller().fillDefaults(new Operation());
 assertEquals(false, withDefaults.deprecated);
 ```
 
+- Traversal with user-defined side-effects (SAX-style)
+
+```java
+new SideEffectingDepthFirstVisit(new SimpleVisitor() {
+  public void visit(PathItem pathItem, String path) {
+    // this method will be called for all path items defined in the swagger definition
+  }
+  
+  public void visit(Operation operation) {
+    // same for operations
+  }
+  
+  public void visit(Schema schema, String name) {
+    // this method will be called for all named schemas defined in the swagger definition
+    // use #visit(Schema) for unnamed schemas
+  }
+}).run(swagger);
+```
+
 ## Technical choices
 
 The objects defined by the spec are modeled in the simplest way possible, which is as Java classes with public fields 
