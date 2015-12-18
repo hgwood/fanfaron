@@ -1,4 +1,6 @@
-package fr.hgwood.fanfaron.utils;
+package fr.hgwood.fanfaron.utils.vendorextensions;
+
+import fr.hgwood.fanfaron.utils.DynamicObject;
 
 import static java.lang.String.format;
 

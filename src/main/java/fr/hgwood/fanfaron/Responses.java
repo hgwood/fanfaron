@@ -1,7 +1,7 @@
 package fr.hgwood.fanfaron;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import fr.hgwood.fanfaron.utils.DynamicObjectWithVendorExtensions;
+import fr.hgwood.fanfaron.utils.vendorextensions.DynamicObjectWithVendorExtensions;
 
 import java.util.Map;
 

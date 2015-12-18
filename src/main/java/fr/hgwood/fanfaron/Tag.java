@@ -1,6 +1,6 @@
 package fr.hgwood.fanfaron;
 
-import fr.hgwood.fanfaron.utils.WithVendorExtensions;
+import fr.hgwood.fanfaron.utils.vendorextensions.WithVendorExtensions;
 
 import java.util.Objects;
 

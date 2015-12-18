@@ -1,7 +1,7 @@
 package fr.hgwood.fanfaron;
 
-import fr.hgwood.fanfaron.utils.DynamicObjectWithVendorExtensions;
-import fr.hgwood.fanfaron.utils.WithVendorExtensions;
+import fr.hgwood.fanfaron.utils.vendorextensions.DynamicObjectWithVendorExtensions;
+import fr.hgwood.fanfaron.utils.vendorextensions.WithVendorExtensions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

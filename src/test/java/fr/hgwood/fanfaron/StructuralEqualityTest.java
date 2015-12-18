@@ -1,6 +1,6 @@
 package fr.hgwood.fanfaron;
 
-import fr.hgwood.fanfaron.utils.VendorExtensions;
+import fr.hgwood.fanfaron.utils.vendorextensions.VendorExtensions;
 import org.junit.Test;
 
 import java.lang.reflect.Field;

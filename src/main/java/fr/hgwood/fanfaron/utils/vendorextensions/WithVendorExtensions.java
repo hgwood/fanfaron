@@ -1,4 +1,4 @@
-package fr.hgwood.fanfaron.utils;
+package fr.hgwood.fanfaron.utils.vendorextensions;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;

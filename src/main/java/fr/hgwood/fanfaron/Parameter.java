@@ -1,7 +1,7 @@
 package fr.hgwood.fanfaron;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import fr.hgwood.fanfaron.utils.WithVendorExtensions;
+import fr.hgwood.fanfaron.utils.vendorextensions.WithVendorExtensions;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
