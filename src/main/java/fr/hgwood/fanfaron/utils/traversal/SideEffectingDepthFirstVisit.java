@@ -1,4 +1,4 @@
-package fr.hgwood.fanfaron.utils;
+package fr.hgwood.fanfaron.utils.traversal;
 
 import fr.hgwood.fanfaron.*;
 

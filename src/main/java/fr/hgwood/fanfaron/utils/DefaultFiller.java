@@ -1,6 +1,7 @@
 package fr.hgwood.fanfaron.utils;
 
 import fr.hgwood.fanfaron.*;
+import fr.hgwood.fanfaron.utils.traversal.SimpleVisitor;
 
 public class DefaultFiller extends SimpleVisitor {
 

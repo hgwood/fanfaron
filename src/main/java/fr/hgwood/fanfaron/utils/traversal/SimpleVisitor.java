@@ -1,4 +1,4 @@
-package fr.hgwood.fanfaron.utils;
+package fr.hgwood.fanfaron.utils.traversal;
 
 import fr.hgwood.fanfaron.*;
 
@@ -111,7 +111,7 @@ public class SimpleVisitor implements Visitor {
 
     @Override
     public void visit(Schema schema) {
-        
+
     }
 
     @Override

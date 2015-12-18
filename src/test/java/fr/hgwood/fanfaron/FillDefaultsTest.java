@@ -5,7 +5,7 @@ import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import fr.hgwood.fanfaron.utils.DefaultFiller;
-import fr.hgwood.fanfaron.utils.SideEffectingDepthFirstVisit;
+import fr.hgwood.fanfaron.utils.traversal.SideEffectingDepthFirstVisit;
 import org.junit.Test;
 
 import java.util.Collections;
