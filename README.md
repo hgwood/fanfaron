@@ -36,7 +36,7 @@ into Fanfaron's `Swagger` class.
 
 ```java
 try (InputStream swaggerStream = getClass().getResourceAsStream("swagger.json")) {
-    return new ObjectMapper().readValue(swaggerStream, fr.hgwood.fanfaron.Swagger.class);
+    return new ObjectMapper().readValue(swaggerStream, Swagger.class);
 }
 ```
 
@@ -206,7 +206,7 @@ The versioning follows semantic versioning.
 - *breaking* refactor: `Schema` for Swagger 2 made distinct from `Schema` for JSON Schema Draft 4
   - All classes defined from objects found in the Swagger 2.0 specification are now found in the package
   `fr.hgwood.fanfaron`. Classes in `fr.hgwood.fanfaron.jsonschema` are not used to deserialize Swagger definitions.
-  - The new `fr.hgwood.fanfaron.Schema` exactly matches the Schema Object defined by the Swagger 2.0 specification.
+  - The new `Schema` exactly matches the Schema Object defined by the Swagger 2.0 specification.
   - `Xml` was moved to `fr.hgwood.fanfaron`, as it is specific to Swagger 2.0.
   - `Properties` and `AdditionalProperties` were added to `fr.hgwood.fanfaron`. Those are not explicitly defined by
   the Swagger 2.0 specification, only implicitly.
