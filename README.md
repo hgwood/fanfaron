@@ -15,7 +15,7 @@ Swagger features, like global security requirements, which are impossible to ext
 <dependency>
   <groupId>com.github.hgwood.fanfaron</groupId>
   <artifactId>fanfaron</artifactId>
-  <version>6.3.0</version>
+  <version>7.0.0</version>
 </dependency>
 ```
 
@@ -135,7 +135,7 @@ or any kind of validation. Those belong in adapters and validators, which may be
 
 ## Roadmap
 
-- 100% spec support
+- 100% spec support (see #1)
 - Validation
 - An easier way to build a model from Java
 - An easier way to work with the model, either through utility functions that manipulate the JSON model, or a
@@ -152,11 +152,25 @@ higher-level model with proper Java types and useful methods.
 
 The versioning follows semantic versioning.
 
+### 7.0.0
+
+- feat: added traversal with user-defined side-effects
+  - See Other Features
+- *breaking* refactor: rewritten value defaulting to leverage traversal
+  - `DefaultFiller` no longer descend in child objects on its own, but can be combined with 
+  `SideEffectingDepthFirstVisit` to achieve that.
+  - `DefaultFiller` no longer returns new objects but mutates its parameters instead.
+- *breaking* refactor: moved vendor extensions utils to package utils.vendorextensions
+- *breaking* refactor: removed json schema model
+- *breaking* refactor: renamed root package to align with group id
+
 ### 6.3.1
 
 - fix: recursive defaulting vastly improved
   - It no longer chokes on `null`s while traversing the object tree.
   - It no longer cuts out part of the object tree.
+
+> ** Edit**: it still won't copy over most properties. See #2. Fixed in 7.0.0 where it now mutates its parameters. 
 
 ### 6.3.0
 
