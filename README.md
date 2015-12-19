@@ -170,7 +170,7 @@ The versioning follows semantic versioning.
   - It no longer chokes on `null`s while traversing the object tree.
   - It no longer cuts out part of the object tree.
 
-> ** Edit**: it still won't copy over most properties. See #2. Fixed in 7.0.0 where it now mutates its parameters. 
+> **Edit**: it still won't copy over most properties. See #2. Fixed in 7.0.0 where it now mutates its parameters. 
 
 ### 6.3.0
 
