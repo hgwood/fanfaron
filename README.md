@@ -5,12 +5,11 @@ A no-surprise Java model of the [Swagger 2.0 specification](https://github.com/s
 Fanfaron allows developers to work with Swagger 2.0 definitions using Java. It is an alternative to the swagger-model
 module of the swagger-core project. The main advantage over swagger-module is that it is better aligned with the
 specification: the model is simpler and matches the specification more closely. This enables Fanfaron to better support
-Swagger features, like global security requirements, which are impossible to extract today using swagger-model 1.5.3.
+Swagger features, like global security requirements, which are impossible to extract using swagger-model 1.5.3.
 
 ## Get Started
 
-Fanfaron requires Java 7 or later. Be advised that moving to Java 8 is being considered, although model classes will
-preferably stay clear of any Java 8 features, so that they remain extractable for use in lower versions.
+Fanfaron requires Java 7 or later.
 
 ### [Get from Maven Central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22fanfaron%22)...
 
@@ -52,7 +51,7 @@ legacy code to maintain, and that the model is more complicated than required.
 
 ## Swagger 2.0 Specification Support
 
-Fanfaron is able to deserialize all fields of all objects defined in the Swagger 2.0 specification, without known 
+Fanfaron is able to deserialize all fields of all objects defined in the Swagger 2.0 specification, without any known 
 limitation. Please open an issue if you detect any.
 
 Furthermore, there is no kind of validation whatsoever, aside from very basic type correctness (see Type mapping). For
@@ -87,7 +86,7 @@ traversal to set all defaults in a definition.
 ```java
 // on a single object
 Operation operation = new Operation();
-new DefaultFiller().vist(operation);
+new DefaultFiller().visit(operation);
 assertEquals(false, operation.deprecated);
 
 // on a definition
@@ -117,7 +116,7 @@ string | String
 integer | BigInteger
 number | BigDecimal
 boolean | Boolean
-* | Object
+\* | Object
 T | T
 [T] | List\<T\>
 T \| Reference Object | TOrReference
@@ -134,19 +133,19 @@ boolean, and `schema` for the Schema Object.
 The classes directly mapping the spec are only meant to do just that, and nothing else. They will never have accessors
 or any kind of validation. Those belong in adapters and validators, which may be added into this library in the future.
 
-## Roadmap
+## ~~Roadmap~~
 
-- Validation
-- An easier way to build a model from Java
-- An easier way to work with the model, either through utility functions that manipulate the JSON model, or a
-higher-level model with proper Java types and useful methods.
-  - Optional and empty collections instead of null
-  - Value to key references for objects with patterned fields (operation to HTTP method, response to status code, ...)
-  - Dereferencing
-  - Traversal
-  - Collecting all entities of the same type (all parameters, all responses, ...)
-  - Types guarantee valid entities
-  - Other things?
+- ~~Validation~~
+- ~~An easier way to build a model from Java~~
+- ~~An easier way to work with the model, either through utility functions that manipulate the JSON model, or a
+higher-level model with proper Java types and useful methods.~~
+  - ~~Optional and empty collections instead of null~~
+  - ~~Value to key references for objects with patterned fields (operation to HTTP method, response to status code, ...)~~
+  - ~~Dereferencing~~
+  - ~~Traversal~~
+  - ~~Collecting all entities of the same type (all parameters, all responses, ...)~~
+  - ~~Types guarantee valid entities~~
+  - ~~Other things?~~
 
 ## Change log
 
